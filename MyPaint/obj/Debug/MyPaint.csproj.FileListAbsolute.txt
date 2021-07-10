@@ -1,0 +1,84 @@
+C:\Users\Igor\source\repos\MyPaint\MyPaint\bin\Debug\MyPaint.exe.config
+C:\Users\Igor\source\repos\MyPaint\MyPaint\bin\Debug\MyPaint.exe
+C:\Users\Igor\source\repos\MyPaint\MyPaint\bin\Debug\MyPaint.pdb
+C:\Users\Igor\source\repos\MyPaint\MyPaint\obj\Debug\MyPaint.csprojAssemblyReference.cache
+C:\Users\Igor\source\repos\MyPaint\MyPaint\obj\Debug\MyPaint.Form1.resources
+C:\Users\Igor\source\repos\MyPaint\MyPaint\obj\Debug\MyPaint.Form2.resources
+C:\Users\Igor\source\repos\MyPaint\MyPaint\obj\Debug\MyPaint.Properties.Resources.resources
+C:\Users\Igor\source\repos\MyPaint\MyPaint\obj\Debug\MyPaint.csproj.GenerateResource.cache
+C:\Users\Igor\source\repos\MyPaint\MyPaint\obj\Debug\MyPaint.csproj.CoreCompileInputs.cache
+C:\Users\Igor\source\repos\MyPaint\MyPaint\obj\Debug\MyPaint.exe
+C:\Users\Igor\source\repos\MyPaint\MyPaint\obj\Debug\MyPaint.pdb
+F:\Education\University\2 course\C#\лабы\MyPaint_3\MyPaint\bin\Debug\MyPaint.exe.config
+F:\Education\University\2 course\C#\лабы\MyPaint_3\MyPaint\bin\Debug\MyPaint.exe
+F:\Education\University\2 course\C#\лабы\MyPaint_3\MyPaint\bin\Debug\MyPaint.pdb
+F:\Education\University\2 course\C#\лабы\MyPaint_3\MyPaint\obj\Debug\MyPaint.csprojAssemblyReference.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_3\MyPaint\obj\Debug\MyPaint.Form1.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_3\MyPaint\obj\Debug\MyPaint.Form2.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_3\MyPaint\obj\Debug\MyPaint.Properties.Resources.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_3\MyPaint\obj\Debug\MyPaint.csproj.GenerateResource.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_3\MyPaint\obj\Debug\MyPaint.csproj.CoreCompileInputs.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_3\MyPaint\obj\Debug\MyPaint.exe
+F:\Education\University\2 course\C#\лабы\MyPaint_3\MyPaint\obj\Debug\MyPaint.pdb
+F:\Education\University\2 course\C#\лабы\MyPaint_4\MyPaint\bin\Debug\MyPaint.exe.config
+F:\Education\University\2 course\C#\лабы\MyPaint_4\MyPaint\bin\Debug\MyPaint.exe
+F:\Education\University\2 course\C#\лабы\MyPaint_4\MyPaint\bin\Debug\MyPaint.pdb
+F:\Education\University\2 course\C#\лабы\MyPaint_4\MyPaint\obj\Debug\MyPaint.csprojAssemblyReference.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_4\MyPaint\obj\Debug\MyPaint.Form1.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_4\MyPaint\obj\Debug\MyPaint.Form2.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_4\MyPaint\obj\Debug\MyPaint.Properties.Resources.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_4\MyPaint\obj\Debug\MyPaint.csproj.GenerateResource.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_4\MyPaint\obj\Debug\MyPaint.csproj.CoreCompileInputs.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_4\MyPaint\obj\Debug\MyPaint.exe
+F:\Education\University\2 course\C#\лабы\MyPaint_4\MyPaint\obj\Debug\MyPaint.pdb
+F:\Education\University\2 course\C#\лабы\MyPaint_5\MyPaint\bin\Debug\MyPaint.exe.config
+F:\Education\University\2 course\C#\лабы\MyPaint_5\MyPaint\bin\Debug\MyPaint.exe
+F:\Education\University\2 course\C#\лабы\MyPaint_5\MyPaint\bin\Debug\MyPaint.pdb
+F:\Education\University\2 course\C#\лабы\MyPaint_5\MyPaint\obj\Debug\MyPaint.csprojAssemblyReference.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_5\MyPaint\obj\Debug\MyPaint.Form1.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_5\MyPaint\obj\Debug\MyPaint.Form2.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_5\MyPaint\obj\Debug\MyPaint.Properties.Resources.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_5\MyPaint\obj\Debug\MyPaint.csproj.GenerateResource.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_5\MyPaint\obj\Debug\MyPaint.csproj.CoreCompileInputs.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_5\MyPaint\obj\Debug\MyPaint.exe
+F:\Education\University\2 course\C#\лабы\MyPaint_5\MyPaint\obj\Debug\MyPaint.pdb
+F:\Education\University\2 course\C#\лабы\MyPaint_5\MyPaint\obj\Debug\MyPaint.PenSz.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_6\MyPaint\bin\Debug\MyPaint.exe.config
+F:\Education\University\2 course\C#\лабы\MyPaint_6\MyPaint\bin\Debug\MyPaint.exe
+F:\Education\University\2 course\C#\лабы\MyPaint_6\MyPaint\bin\Debug\MyPaint.pdb
+F:\Education\University\2 course\C#\лабы\MyPaint_6\MyPaint\obj\Debug\MyPaint.csprojAssemblyReference.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_6\MyPaint\obj\Debug\MyPaint.Form1.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_6\MyPaint\obj\Debug\MyPaint.Form2.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_6\MyPaint\obj\Debug\MyPaint.FormSize.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_6\MyPaint\obj\Debug\MyPaint.PenSz.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_6\MyPaint\obj\Debug\MyPaint.Properties.Resources.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_6\MyPaint\obj\Debug\MyPaint.csproj.GenerateResource.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_6\MyPaint\obj\Debug\MyPaint.csproj.CoreCompileInputs.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_6\MyPaint\obj\Debug\MyPaint.exe
+F:\Education\University\2 course\C#\лабы\MyPaint_6\MyPaint\obj\Debug\MyPaint.pdb
+F:\Education\University\2 course\C#\лабы\MyPaint_7\MyPaint\bin\Debug\MyPaint.exe.config
+F:\Education\University\2 course\C#\лабы\MyPaint_7\MyPaint\bin\Debug\MyPaint.exe
+F:\Education\University\2 course\C#\лабы\MyPaint_7\MyPaint\bin\Debug\MyPaint.pdb
+F:\Education\University\2 course\C#\лабы\MyPaint_7\MyPaint\obj\Debug\MyPaint.csprojAssemblyReference.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_7\MyPaint\obj\Debug\MyPaint.Form1.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_7\MyPaint\obj\Debug\MyPaint.Form2.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_7\MyPaint\obj\Debug\MyPaint.FormSize.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_7\MyPaint\obj\Debug\MyPaint.PenSz.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_7\MyPaint\obj\Debug\MyPaint.Properties.Resources.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_7\MyPaint\obj\Debug\MyPaint.csproj.GenerateResource.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_7\MyPaint\obj\Debug\MyPaint.csproj.CoreCompileInputs.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_7\MyPaint\obj\Debug\MyPaint.exe
+F:\Education\University\2 course\C#\лабы\MyPaint_7\MyPaint\obj\Debug\MyPaint.pdb
+F:\Education\University\2 course\C#\лабы\MyPaint_8\MyPaint\bin\Debug\MyPaint.exe.config
+F:\Education\University\2 course\C#\лабы\MyPaint_8\MyPaint\bin\Debug\MyPaint.exe
+F:\Education\University\2 course\C#\лабы\MyPaint_8\MyPaint\bin\Debug\MyPaint.pdb
+F:\Education\University\2 course\C#\лабы\MyPaint_8\MyPaint\obj\Debug\MyPaint.csprojAssemblyReference.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_8\MyPaint\obj\Debug\MyPaint.Form1.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_8\MyPaint\obj\Debug\MyPaint.Form2.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_8\MyPaint\obj\Debug\MyPaint.FormSize.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_8\MyPaint\obj\Debug\MyPaint.PenSz.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_8\MyPaint\obj\Debug\MyPaint.Properties.Resources.resources
+F:\Education\University\2 course\C#\лабы\MyPaint_8\MyPaint\obj\Debug\MyPaint.csproj.GenerateResource.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_8\MyPaint\obj\Debug\MyPaint.csproj.CoreCompileInputs.cache
+F:\Education\University\2 course\C#\лабы\MyPaint_8\MyPaint\obj\Debug\MyPaint.exe
+F:\Education\University\2 course\C#\лабы\MyPaint_8\MyPaint\obj\Debug\MyPaint.pdb
