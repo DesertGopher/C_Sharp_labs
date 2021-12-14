@@ -3,278 +3,402 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.Drawing.Text;
+
 
 namespace MyPaint
 {
-    [Serializable()]
     public partial class Form1 : Form
     {
-        public int FigNum = 3; // номер выбранной фигуры
-        public int pensize; //толщина линии
-        public Color linecolor, fillcolor; //цвет линии и фона
-        int IfOpen;
-        Form2 f2;
-        public bool IsFigureFilling { get; set; }
+        public Color colorPen, colorBackground;
+        public int widthPen;
+        public Size sizeForm2;
+        public int FigNum = 0;
+        public bool fillFigure = false;
+        public Font font;
+        private bool panelAdded = false;
+        Font CustomFont;
+
         public Form1()
         {
             InitializeComponent();
-            linecolor = Color.Black;//по умолчанию цвет линии - чёрный    
-            fillcolor = Color.White;//по умолчанию цвет фона - белый    
-            pensize = 1;//по умолчанию толщина линии - 1   
+            colorPen = Color.Black;
+            colorBackground = Color.White;
+            widthPen = 1;
+            font = new Font("Times New Roman", 12);
+            MyFont();
+            menuStrip1.Font = CustomFont;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void окноToolStripMenuItem_Click(object sender, EventArgs e)
         {
         }
 
-        public void CheckIfOpen()
+        private void новоеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            IfOpen = MdiChildren.Length;
-            if(IfOpen==0)
-            {
-                сохранитьToolStripMenuItem.Enabled = false;
-                сохранитьКакToolStripMenuItem.Enabled = false;
-            }
-            else
-            {
-                сохранитьToolStripMenuItem.Enabled = true;
-                сохранитьКакToolStripMenuItem.Enabled = true;
-                f2 = (Form2)ActiveMdiChild;
-                if(f2.Change==false)
-                {
-                    сохранитьToolStripMenuItem.Enabled = false;
-                }
-            }
-        }
-
-        private void новыйToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-                Form f = new Form2();
-                f.MdiParent = this;
-                f.Text = "Рисунок " + this.MdiChildren.Length.ToString();
-               // f.Height = MySize.height; //
-                //f.Width = MySize.width; //
-                f.Show();
-            
-        }
-
-        public void SaveFile(Form2 f2) // функция сохранения файла
-        {
-            string fileName;
-            BinaryFormatter formatter1 = new BinaryFormatter(); //Сохранение объекта obj некоторого класса X в файле с именем fileName 
-            if (f2.fileName == null) //Имя файла, выбранное в диалоговом окне файла - если раньше этот файл не был сохранен
-            {
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.InitialDirectory = Environment.CurrentDirectory; //При инициализации файловых диалогов указываем в качестве стартового каталога текущий каталог программы
-                saveFileDialog1.Filter = "Мюсли(*.rytp)|*.rytp|All files (*.*)|*.*"; //Задаем текущую строку фильтра имен файлов
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK) //если нажали OK
-                {
-                    fileName = saveFileDialog1.FileName;
-                    Stream myStream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None);
-                    formatter1.Serialize(myStream, f2.objects);
-                    myStream.Close();
-                    f2.Change = false;
-                    f2.fileName = fileName;
-                    f2.Text = Path.GetFileName(saveFileDialog1.FileName);
-                }
-            }
-            else // если раньше этот файл был сохранен
-            {
-                fileName = f2.fileName;
-                Stream myStream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None);
-                formatter1.Serialize(myStream, f2.objects);
-                myStream.Close();
-                f2.Change = false;
-            }
+            Form2 f = new Form2(sizeForm2);
+            f.MdiParent = this;
+            f.Text = "Рисунок " + this.MdiChildren.Length.ToString();
+            f.Show();
+            сохранитьToolStripMenuItem.Enabled = true;
+            сохранитьКакToolStripMenuItem.Enabled = true;
         }
 
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string fileName;
-            OpenFileDialog OpenPic = new OpenFileDialog();
-            OpenPic.InitialDirectory = Environment.CurrentDirectory;
-            OpenPic.Filter = "Мюсли(*.rytp)|*.rytp|All files (*.*)|*.*";
-            if (OpenPic.ShowDialog() == DialogResult.OK)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+            openFileDialog.Filter = "kek files|*.kek|All files|*.*";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                fileName = OpenPic.FileName;
-                BinaryFormatter formatter1 = new BinaryFormatter(); // Восстановление сохранённого объекта из файла:                           
-                Stream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-                List<Figure> array = (List<Figure>)formatter1.Deserialize(stream);
-                stream.Close();
-                f2 = new Form2();
+                BinaryFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+                Form2 f2 = new Form2();
                 f2.MdiParent = this;
-                f2.fileName = fileName;
-                f2.Text = OpenPic.SafeFileName;
-                f2.objects = array;
+                f2.Text = openFileDialog.FileName;
+                f2.objects = (List<Figure>)(formatter.Deserialize(stream));
+                f2.sizeForm = (Size)(formatter.Deserialize(stream));
+                f2.AutoScrollMinSize = f2.sizeForm;
+                Size tmp = new Size(f2.sizeForm.Width + f2.PreferredSize.Width, f2.sizeForm.Height + f2.PreferredSize.Height);
+                f2.Size = tmp;
+                stream.Close();
                 f2.Show();
-                f2.Change = false;
+                f2.isChange = false;
+                f2.fileExists = true;
             }
         }
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFile((Form2)ActiveMdiChild);
+            {
+                ((Form2)(this.ActiveMdiChild)).save();
+            }
         }
 
         private void сохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            f2 = (Form2)ActiveMdiChild;
-            f2.fileName = null;
-            SaveFile((Form2)ActiveMdiChild);
+            ((Form2)this.ActiveMdiChild).saveAs();
         }
 
-        private void цветЛинииToolStripMenuItem_Click(object sender, EventArgs e)
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ColorDialog myDialog = new ColorDialog();  //открытие диалогового окна                              
-            DialogResult result = myDialog.ShowDialog();
-            if (result == DialogResult.OK) linecolor = myDialog.Color;
-            statusBar1.Refresh();
+            if (MdiChildren.Length > 0) {
+                сохранитьКакToolStripMenuItem.Enabled = true;
+                сохранитьToolStripMenuItem.Enabled = ((Form2)(this.ActiveMdiChild)).isChange;
+            }
+            else
+            {
+                сохранитьКакToolStripMenuItem.Enabled = false;
+                сохранитьToolStripMenuItem.Enabled = false;
+            }
         }
 
         private void цветФонаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ColorDialog myDialog = new ColorDialog(); //открытие диалогового окна 
-            DialogResult result = myDialog.ShowDialog();
-            if (result == DialogResult.OK) fillcolor = myDialog.Color;
-            statusBar1.Refresh();
+            ColorDialog colorDialog = new ColorDialog();
+
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                colorBackground = colorDialog.Color;
+                Graphics g = statusBar1.CreateGraphics();
+                SolidBrush br = new SolidBrush(colorBackground);
+                Rectangle r = new Rectangle(337, 0, statusBar1.Panels[4].Width, statusBar1.Size.Height);
+                g.FillRectangle(br, r); //рисование прямоугольника с текущим цветом фона на панели строки состояния
+                br.Dispose();
+                g.Dispose();
+            }
+            colorDialog.Dispose();
         }
 
-        private void толщинаЛинииToolStripMenuItem_Click(object sender, EventArgs e)
+        private void цветЛинииToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PenSz myDialog = new PenSz(); //открытие диалогового окна                           
-            DialogResult result = myDialog.ShowDialog(this);
-            if (result == DialogResult.OK) pensize = myDialog.ch2;  //проверка и установление выбранной толщины линии 
-            statusBar1.Refresh();
+            ColorDialog colorDialog = new ColorDialog();
+
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                colorPen = colorDialog.Color;
+                Graphics g = statusBar1.CreateGraphics();
+                SolidBrush br = new SolidBrush(colorPen);
+                Rectangle r = new Rectangle(237, 0, statusBar1.Panels[2].Width, statusBar1.Size.Height);
+                g.FillRectangle(br, r); //рисование прямоугольника с текущим цветом линии на панели строки состояния
+                br.Dispose();
+                g.Dispose();
+            }
+            colorDialog.Dispose();
         }
 
-        private void прямоугольникToolStripMenuItem_Click(object sender, EventArgs e)
+        private void размерФормыToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FormSize dialogSize = new FormSize();
+
+            if (dialogSize.ShowDialog() == DialogResult.OK)
+            {
+                sizeForm2 = dialogSize.sizeForm;
+            }
+            dialogSize.Dispose();
+        }
+
+        private void прямоугольникToolStripMenuItem_Click(object sender, EventArgs e) // метод-обработчик нажатия на пункт подменю и кнопку кнопочной панели "Прямоугольник"
+        {
+            if (panelAdded)
+            {
+                statusBar1.Panels.RemoveAt(8);
+                panelAdded = false;
+            }
             эллипсToolStripMenuItem.Checked = false;
-            прямаяToolStripMenuItem.Checked = false;
-            криваяToolStripMenuItem.Checked = false;
+            прямаяЛинияToolStripMenuItem.Checked = false;
+            произвольнаяЛинияToolStripMenuItem.Checked = false;
             прямоугольникToolStripMenuItem.Checked = true;
-            toolStripButton8.Checked = false;
-            toolStripButton9.Checked = false;
-            toolStripButton10.Checked = true;
-            toolStripButton11.Checked = false;
-
+            шрифтToolStripMenuItem.Checked = false;
+            выделениеToolStripMenuItem.Checked = false;
             FigNum = 0;
-
-
-        }
-
-        private void эллипсToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            эллипсToolStripMenuItem.Checked = true;
-            прямаяToolStripMenuItem.Checked = false;
-            криваяToolStripMenuItem.Checked = false;
-            прямоугольникToolStripMenuItem.Checked = false;
-            toolStripButton8.Checked = false;
-            toolStripButton9.Checked = false;
-            toolStripButton10.Checked = false;
-            toolStripButton11.Checked = true;
-
-            FigNum = 1;
-
-        }
-
-        private void прямаяToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            эллипсToolStripMenuItem.Checked = false;
-            прямаяToolStripMenuItem.Checked = true;
-            криваяToolStripMenuItem.Checked = false;
-            прямоугольникToolStripMenuItem.Checked = false;
             toolStripButton8.Checked = true;
             toolStripButton9.Checked = false;
             toolStripButton10.Checked = false;
             toolStripButton11.Checked = false;
-
-            FigNum = 2;
-
+            toolStripButton14.Checked = false;
+            toolStripButton15.Checked = false;
         }
 
-        private void криваяToolStripMenuItem_Click(object sender, EventArgs e)
+        private void эллипсToolStripMenuItem_Click(object sender, EventArgs e) // метод-обработчик нажатия на пункт подменю и кнопку кнопочной панели "Эллипс"
         {
-            эллипсToolStripMenuItem.Checked = false;
-            прямаяToolStripMenuItem.Checked = false;
-            криваяToolStripMenuItem.Checked = true;
+            if (panelAdded)
+            {
+                statusBar1.Panels.RemoveAt(8);
+                panelAdded = false;
+            }
+            эллипсToolStripMenuItem.Checked = true;
+            прямаяЛинияToolStripMenuItem.Checked = false;
+            произвольнаяЛинияToolStripMenuItem.Checked = false;
             прямоугольникToolStripMenuItem.Checked = false;
+            шрифтToolStripMenuItem.Checked = false;
+            выделениеToolStripMenuItem.Checked = false;
+            FigNum = 1;
             toolStripButton8.Checked = false;
             toolStripButton9.Checked = true;
             toolStripButton10.Checked = false;
             toolStripButton11.Checked = false;
-
-            FigNum = 3;
-
+            toolStripButton14.Checked = false;
+            toolStripButton15.Checked = false;
         }
 
-        private void заливкаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void прямаяToolStripMenuItem_Click(object sender, EventArgs e) // метод-обработчик нажатия на пункт подменю и кнопку кнопочной панели "Прямая линия"
         {
-            if (заливкаToolStripMenuItem.Checked|| toolStripButton12.Checked)
-                IsFigureFilling = true; //флаг заливки для функции в Form2-> Class Figure
-            else IsFigureFilling = false;
-
-        }
-
-        private void размерФормыToolStripMenuItem_Click(object sender, EventArgs e)
-        {          
-                FormSize MySize = new FormSize();
-            DialogResult result = MySize.ShowDialog(this);
-            if (result == DialogResult.OK) 
+            if (panelAdded)
             {
-                f2 = new Form2();
-                f2.MdiParent = this;
-                f2.Text = "Рисунок " + this.MdiChildren.Length.ToString();
-                f2.Height = MySize.height; 
-                f2.Width = MySize.width; 
-                f2.Show();
+                statusBar1.Panels.RemoveAt(8);
+                panelAdded = false;
             }
+            эллипсToolStripMenuItem.Checked = false;
+            прямаяЛинияToolStripMenuItem.Checked = true;
+            произвольнаяЛинияToolStripMenuItem.Checked = false;
+            прямоугольникToolStripMenuItem.Checked = false;
+            шрифтToolStripMenuItem.Checked = false;
+            выделениеToolStripMenuItem.Checked = false;
+            FigNum = 2;
+            toolStripButton8.Checked = false;
+            toolStripButton9.Checked = false;
+            toolStripButton10.Checked = true;
+            toolStripButton11.Checked = false;
+            toolStripButton14.Checked = false;
+            toolStripButton15.Checked = false;
         }
 
-        private void файлToolStripMenuItem_DropDownOpened(object sender, EventArgs e)
+        private void криваяToolStripMenuItem_Click(object sender, EventArgs e) // метод-обработчик нажатия на пункт подменю и кнопку кнопочной панели "Произвольная линия"
         {
-            CheckIfOpen();
+            if (panelAdded)
+            {
+                statusBar1.Panels.RemoveAt(8);
+                panelAdded = false;
+            }
+            эллипсToolStripMenuItem.Checked = false;
+            прямаяЛинияToolStripMenuItem.Checked = false;
+            произвольнаяЛинияToolStripMenuItem.Checked = true;
+            прямоугольникToolStripMenuItem.Checked = false;
+            шрифтToolStripMenuItem.Checked = false;
+            выделениеToolStripMenuItem.Checked = false;
+            FigNum = 3;
+            toolStripButton8.Checked = false;
+            toolStripButton9.Checked = false;
+            toolStripButton10.Checked = false;
+            toolStripButton11.Checked = true;
+            toolStripButton14.Checked = false;
+            toolStripButton15.Checked = false;
         }
 
-        private void statusBar1_DrawItem(object sender, StatusBarDrawItemEventArgs sbdevent)
+        private void заливкаToolStripMenuItem_Click(object sender, EventArgs e) // метод-обработчик нажатия на пункт подменю и кнопку кнопочной панели "Заливка"
         {
-            Graphics g = statusBar1.CreateGraphics();        //Объект для рисования прямоугольников в строке состояния
-
-            //вывод толщины линии
-            statusBarPanelPenSize.Text = pensize.ToString();
-
-            //Подписи 
-            g.DrawString("Линия", new Font(Font, FontStyle.Regular),
-                new SolidBrush(Color.Black), statusBarPanelCoord.Width + 5, 7);
-            g.DrawString("Заливка", new Font(Font, FontStyle.Regular),
-             new SolidBrush(Color.Black), statusBarPanelCoord.Width + 5 + statusBarPanelLineCol.Width, 7);
-
-            int RectDist = 60; //Перемення для расположения прямоугольников относительно начала панели
-
-            //Рисование индикаторов цвета
-            g.FillRectangle(new SolidBrush(linecolor), Rectangle.FromLTRB(statusBar1.Panels[0].Width + RectDist, 2,
-                statusBar1.Panels[0].Width + RectDist + 20, 22));
-            g.DrawRectangle(new Pen(Color.Black, 1), Rectangle.FromLTRB(statusBar1.Panels[0].Width + RectDist, 2,
-                statusBar1.Panels[0].Width + RectDist + 20, 22));
-
-            g.FillRectangle(new SolidBrush(fillcolor),
-                Rectangle.FromLTRB(statusBar1.Panels[0].Width + statusBar1.Panels[1].Width + RectDist, 2,
-                statusBar1.Panels[0].Width + statusBar1.Panels[1].Width + RectDist + 20, 22));
-            g.DrawRectangle(new Pen(Color.Black, 1),
-                Rectangle.FromLTRB(statusBar1.Panels[0].Width + statusBar1.Panels[1].Width + RectDist, 2,
-                statusBar1.Panels[0].Width + statusBar1.Panels[1].Width + RectDist + 20, 22));
+            fillFigure = !fillFigure; 
+            заливкаToolStripMenuItem.Checked = fillFigure;
+            toolStripButton12.Checked = fillFigure; // фиксация кнопки "Заливка" на кнопочной панели в нажатом состоянии
         }
 
-        public StatusBar GetStatusBar()
+        public void SetSizePicture(Size sizePict) // метод для отображения размера текущего рисунка
         {
-            return statusBar1;
+            statusBar1.Panels[7].Text = sizePict.Width.ToString() + "x" + sizePict.Height.ToString(); // отображение на панели строки состояния размера текущего рисунка
+        }
+
+        public void SetCursor(int x, int y) // метод для отображения на панели строки состояния текущих координат курсора мыши
+        {
+            statusBar1.Panels[5].Text = x.ToString();
+            statusBar1.Panels[6].Text = y.ToString();
+        }
+
+        private void statusBar1_DrawItem(object sender, StatusBarDrawItemEventArgs sbdevent) // метод-обработчик отображения информации на панели строки состояния
+        {
+            Graphics g = statusBar1.CreateGraphics();
+            SolidBrush br = new SolidBrush(colorPen);
+            Rectangle r = new Rectangle(237, 0, statusBar1.Panels[2].Width, statusBar1.Size.Height); 
+            g.FillRectangle(br, r); //рисование прямоугольника с текущим цветом линии на панели строки состояния
+            br.Dispose();
+
+            br = new SolidBrush(colorBackground);
+            r = new Rectangle(337, 0, statusBar1.Panels[4].Width, statusBar1.Size.Height);
+            g.FillRectangle(br, r); //рисование прямоугольника с текущим цветом фона на панели строки состояния
+            br.Dispose();
+            g.Dispose();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void шрифтToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDialog = new FontDialog();
+
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                font = fontDialog.Font;
+                if (toolStripButton14.Checked)
+                {
+                    statusBar1.Panels[8].Text = font.Name + " " + font.SizeInPoints.ToString();
+                }
+                //statusBar1.Panels[0].Text = "Толщина линии: " + widthPen.ToString(); // отображение на панели строки состояния текущей толщины линии
+            }
+            fontDialog.Dispose();
+        }
+
+        private void toolStripButton14_Click(object sender, EventArgs e)
+        {
+            эллипсToolStripMenuItem.Checked = false;
+            прямаяЛинияToolStripMenuItem.Checked = false;
+            произвольнаяЛинияToolStripMenuItem.Checked = false;
+            прямоугольникToolStripMenuItem.Checked = false;
+            текстToolStripMenuItem.Checked = true;
+            выделениеToolStripMenuItem.Checked = false;
+            FigNum = 4;
+            toolStripButton8.Checked = false;
+            toolStripButton9.Checked = false;
+            toolStripButton10.Checked = false;
+            toolStripButton11.Checked = false;
+            toolStripButton14.Checked = true;
+            toolStripButton15.Checked = false;
+            if (panelAdded)
+            {
+                statusBar1.Panels.RemoveAt(8);
+                panelAdded = false;
+            }
+            statusBar1.Panels.Add(font.Name + " " + font.SizeInPoints.ToString());
+            statusBar1.Panels[8].AutoSize = StatusBarPanelAutoSize.Contents;
+            panelAdded = true;
+        }
+
+        private void выделениеToolStripMenuItem_Click(object sender, EventArgs e) // обработчик события нажатия на пункт режима выделения фигур
+        {
+            эллипсToolStripMenuItem.Checked = false;
+            прямаяЛинияToolStripMenuItem.Checked = false;
+            произвольнаяЛинияToolStripMenuItem.Checked = false;
+            прямоугольникToolStripMenuItem.Checked = false;
+            шрифтToolStripMenuItem.Checked = false;
+            выделениеToolStripMenuItem.Checked = true;
+            FigNum = 5;
+            toolStripButton8.Checked = false;
+            toolStripButton9.Checked = false;
+            toolStripButton10.Checked = false;
+            toolStripButton11.Checked = false;
+            toolStripButton14.Checked = false;
+            toolStripButton15.Checked = true;
+        }
+
+        private void удалитьВыделенныеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild != null)
+                ((Form2)this.ActiveMdiChild).DeleteSelected();
+        }
+
+
+        private void толщинаЛинииToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PenSz dialogWidth = new PenSz();
+
+            if (dialogWidth.ShowDialog() == DialogResult.OK)
+            {
+                widthPen = dialogWidth.getWidth();
+                statusBar1.Panels[0].Text = "Толщина линии: " + widthPen.ToString(); // отображение на панели строки состояния текущей толщины линии
+            }
+            dialogWidth.Dispose();
+        }
+
+        private void копироватьКакМетафайлToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ((Form2)(this.ActiveMdiChild)).CopyAsMetafile();
+        }
+
+        private void копироватьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ((Form2)(this.ActiveMdiChild)).Copy();
+        }
+
+        private void вырезатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ((Form2)(this.ActiveMdiChild)).Copy();
+
+            удалитьВыделенныеToolStripMenuItem_Click(sender, e);
+        }
+
+        private void вставитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ((Form2)(this.ActiveMdiChild)).Paste();
+
+            выделениеToolStripMenuItem_Click(sender, e);
+        }
+
+        private void выделитьВсёToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            выделениеToolStripMenuItem_Click(sender, e);
+            ((Form2)(this.ActiveMdiChild)).SelectAll();
+            ((Form2)(this.ActiveMdiChild)).Refresh();
+        }
+
+        private void правкаToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            bool tb = (this.ActiveMdiChild != null && ((Form2)(this.ActiveMdiChild)).IsSelected());
+            копироватьКакМетафайлToolStripMenuItem.Enabled = tb;
+            копироватьToolStripMenuItem.Enabled = tb;
+            вырезатьToolStripMenuItem.Enabled = tb;
+
+            IDataObject ido = Clipboard.GetDataObject();
+            вставитьToolStripMenuItem.Enabled = (ido != null && ido.GetDataPresent("Lab11"));
+        }
+
+        private void MyFont()
+        {
+            PrivateFontCollection my_font = new PrivateFontCollection();
+            my_font.AddFontFile("MyFont.ttf");
+            CustomFont = new Font(my_font.Families[0], 12);
         }
     }
 }

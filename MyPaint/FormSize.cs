@@ -7,107 +7,136 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Text;
 
 namespace MyPaint
 {
     public partial class FormSize : Form
     {
-        public int height, width;
+        public Size sizeForm;
+        Font CustomFont;
         public FormSize()
         {
+            if (sizeForm.Width == 320 && sizeForm.Height == 240)
+            {
+                radioButton1.Checked = true;
+            }
+            if (sizeForm.Width == 600 && sizeForm.Height == 480)
+            {
+                radioButton2.Checked = true;
+            }
+            if (sizeForm.Width == 800 && sizeForm.Height == 600)
+            {
+                radioButton3.Checked = true;
+            }
             InitializeComponent();
-            checkBox1.Checked = false;//по умолчанию не установлен флажок выбора ввода вручную           
-            TextEnFalse();//по умолчанию  выбираем из предложенного
-        }
-        private void TextEnFalse() //если выбираем из предложенного
-        {
-            label1.Enabled = false; label2.Enabled = false; //"ширина" и "высота" не доступны для пользователя
-            textBox1.Enabled = false; textBox2.Enabled = false; //поля для ручного ввода ширины и высоты не доступны для пользователя
-            radioButton1.Enabled = true; radioButton2.Enabled = true; radioButton3.Enabled = true; //флажки выбора размера доступны для пользователя
-            button1.Enabled = true; //кнопка "ОК" доступна для нажатия
-        }
-        private void TextEnTrue() //если вводим вручную
-        {
-            label1.Enabled = true; label2.Enabled = true;
-            textBox1.Enabled = true; textBox2.Enabled = true; //поля для ручного ввода ширины и высоты доступны для пользователя
-            radioButton1.Enabled = false; radioButton2.Enabled = false; radioButton3.Enabled = false; //флажки выбора размера не доступны для пользователя
-            if (textBox1.Text != "" && textBox2.Text != "") button1.Enabled = true; //если что-то введено, то доступна кнопка "ОК"
-            else button1.Enabled = false; //если ничего не введено, то не доступна кнопка "ОК"
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox1.Checked) TextEnTrue();//если установлен флажок выбора ввода вручную   
-            else TextEnFalse();
+            MyFont();
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)//если установлен флажок выбора ввода вручную  
+            if (checkBox1.Checked)
             {
-                try
+                int w, h;
+                if (!int.TryParse(textBox1.Text, out w))
+                    w = 320;
+                if (!int.TryParse(textBox2.Text, out h))
+                    h = 240;
+                sizeForm.Width = w;
+                sizeForm.Height = h;
+            }
+            else
+            {
+                if (radioButton1.Checked)
                 {
-                    width = Convert.ToInt32(textBox1.Text);//устанавливаем ширину, равной введённому значению
-                    height = Convert.ToInt32(textBox2.Text);//устанавливаем высоту, равной введённому значению
-                    this.Close();
+                    sizeForm.Width = 320;
+                    sizeForm.Height = 240;
                 }
-                catch (Exception ex) //при возникновении исключений
+                if (radioButton2.Checked)
                 {
-                    MessageBox.Show(ex.Message);
-                    return;
+                    sizeForm.Width = 640;
+                    sizeForm.Height = 480;
                 }
-
+                if (radioButton3.Checked)
+                {
+                    sizeForm.Width = 800;
+                    sizeForm.Height = 600;
+                }
             }
-            else //если не установлен флажок выбора ввода вручную 
-            {
-                if (radioButton1.Checked) { width = 320; height = 240; }
-                if (radioButton2.Checked) { width = 640; height = 480; }
-                if (radioButton3.Checked) { width = 800; height = 600; }
-            }
+            this.DialogResult = DialogResult.OK;
+            Close();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            TextEnTrue();
+            this.DialogResult = DialogResult.Cancel;
+            Close();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            TextEnTrue();
-        }
-
-        private static void ProverkaText(KeyPressEventArgs e)
-        {
-            if (char.IsDigit(e.KeyChar) == false && e.KeyChar != '\b')//проверяем, является ли введённое значение цифрой или нет
-            {
-                e.Handled = true;// обход обработки элемента по умолчанию
-                return;
-            }
-        }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ProverkaText(e);
+            if (e.KeyChar == '\b') return;
+            if (e.KeyChar >= '0' && e.KeyChar <= '9')
+            {
+                if (textBox2.Text.Length > 3)
+                {
+                    textBox2.Text = textBox2.Text.Substring(0, 4);
+                    e.KeyChar = '\0';
+                    return;
+                }
+            }
+            else e.KeyChar = '\0';
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ProverkaText(e);
+            if (e.KeyChar == '\b') return;
+            if (e.KeyChar >= '0' && e.KeyChar <= '9')
+            {
+                if (textBox2.Text.Length > 3)
+                {
+                    textBox2.Text = textBox2.Text.Substring(0, 4);
+                    e.KeyChar = '\0';
+                    return;
+                }
+            }
+            else e.KeyChar = '\0';
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox1.Enabled = checkBox1.Checked;
+            textBox2.Enabled = checkBox1.Checked;
+            groupBox1.Enabled = !checkBox1.Checked;
+        }
+
+        private void PictureSize_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MyFont()
+        {
+            PrivateFontCollection my_font = new PrivateFontCollection();
+            my_font.AddFontFile("MyFont.ttf");
+            CustomFont = new Font(my_font.Families[0], 12);
         }
 
         private void FormSize_Load(object sender, EventArgs e)
         {
-
+            label1.Font = CustomFont;
+            label2.Font = CustomFont;
+            checkBox1.Font = CustomFont;
+            radioButton1.Font = CustomFont;
+            radioButton2.Font = CustomFont;
+            radioButton3.Font = CustomFont;
+            //groupBox1.Font = CustomFont;
+            button1.Font = CustomFont;
+            button2.Font = CustomFont;
+            textBox1.Font = CustomFont;
+            textBox2.Font = CustomFont;
         }
     }
 }

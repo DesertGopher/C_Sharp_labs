@@ -7,43 +7,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Text;
 
 namespace MyPaint
 {
     public partial class PenSz : Form
     {
-        string ch1;
-        public int ch2;
+        Font CustomFont;
         public PenSz()
         {
             InitializeComponent();
-            int[] mass = new int[] { 1, 2, 5, 8, 10, 12, 15 };
-            int i = 0;
-            while (i < mass.Length)
-            { comboBox1.Items.Add(mass[i]); i++; }      //Добавляем элемент в список позиций      
-            comboBox1.SelectedIndex = 0;
+            MyFont();
+            button1.Font = CustomFont;
+            button2.Font = CustomFont;
+            comboBox1.Font = CustomFont;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) // метод-обработчик нажатия на кнопку "OK"
         {
-
+            this.DialogResult = DialogResult.OK;
+            Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) // метод-обработчик нажатия на кнопку "Cancel"
         {
-            ch1 = comboBox1.Text;
-            ch2 = Convert.ToInt32(ch1);//Преобразовываем текстовое  значение этого поля в целочисленное
+            this.DialogResult = DialogResult.Cancel;
+            Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        public int getWidth() // метод для получения выбранной пользователем толщины линии
         {
-
+            int number;
+            if (int.TryParse(comboBox1.Text, out number))
+                return number;
+            else
+                return 1;
         }
 
-        private void PenSz_Load(object sender, EventArgs e)
+        private void MyFont()
         {
-
+            PrivateFontCollection my_font = new PrivateFontCollection();
+            my_font.AddFontFile("MyFont.ttf");
+            CustomFont = new Font(my_font.Families[0], 12);
         }
     }
-
 }

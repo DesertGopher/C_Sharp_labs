@@ -1,222 +1,290 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace MyPaint
 {
     [Serializable()]
-    public abstract class Figure //Абстрактный класс для фигуры
-
+    abstract class Figure
+    {
+        public Point p1, p2;
+        protected  Color colorPen, colorBackground;
+        protected int widthPen;
+        public List<Point> pp; 
+        public bool fillFigure;
+        [NonSerialized()] public bool selected; // флаг выделения
+        public Figure(Point p1, Point p2, Color cP, Color cB, int w)
         {
-            protected Point point1, point2;// переменные для хранения координат точек прямоугольника
-        protected int ps1;
-        protected Color lc1, pc1;
-        protected bool IsScrolling = false;
-        public bool IsFilling { get; set; }
-        [NonSerialized] public Point startPoint, endPoint;//Переменные для новых координат точек
-        
-        //Виртуальная функция нормализации координат (нормализация для рисования в разные стороны(снизу вверх))
-        public void norm(ref Point startPoint, ref Point endPoint)
-        {
-            int xmin = Math.Min(startPoint.X, endPoint.X);
-            int xmax = Math.Max(startPoint.X, endPoint.X);
-            int ymin = Math.Min(startPoint.Y, endPoint.Y);
-            int ymax = Math.Max(startPoint.Y, endPoint.Y);
-            startPoint = new Point(xmin, ymin);
-            endPoint = new Point(xmax, ymax);
+            this.p1 = p1;
+            this.p2 = p2;
+            colorPen = cP;
+            colorBackground = cB;
+            widthPen = w;
+            pp = new List<Point>(); // инициализация динамического массива точек произвольной линии
         }
-        protected void ScrollCalibaration(Point ScrollShift) // Для нормальной прорисовки фигур при прокрутке
-        {
-            if (!IsScrolling)
-            {
-                point1.X -= ScrollShift.X;
-                point1.Y -= ScrollShift.Y;
-                point2.X -= ScrollShift.X;
-                point2.Y -= ScrollShift.Y;
 
-                IsScrolling = true;
+        public abstract void Draw(Graphics g, int x, int y);
+        public abstract void DrawDash(Graphics g, int x, int y);
+        public abstract Rectangle GetRectangle(); // метод, для получения прямоугольника, в который вписана фигура
+        public void Move(Graphics g, int x, int y, int dx, int dy) // метод для промежуточного перемещения выделенных фигур
+        {
+            DrawDash(g, x + dx, y + dy);
+        }
+        public void MouseMove(Graphics g, Point p, int x, int y)
+        {
+            p2 = p;
+
+            DrawDash(g, x, y);
+        }
+        public void norm(ref int x1, ref int y1, ref int x2, ref int y2)
+        {
+            int x_min = Math.Min(x1, x2);
+            int x_max = Math.Max(x1, x2);
+            int y_min = Math.Min(y1, y2);
+            int y_max = Math.Max(y1, y2);
+            x1 = x_min;
+            x2 = x_max;
+            y1 = y_min;
+            y2 = y_max;
+        }
+        public void MoveTo(int dx, int dy) // метод для окончательного перемещения выделенных фигур
+        {
+            p1.X += dx; // изменение координат точек фигур (прямоугольник, эллипс, текс, прямая линия)
+            p1.Y += dy;
+            p2.X += dx;
+            p2.Y += dy;
+            // в случае если фигура - произвольная линия
+            Point[] points = new Point[pp.Count]; // создание обычного массива точек произвольной линии
+            for (int i = 0; i < pp.Count; ++i) // перенос информации из динамического массива в обычный 
+            {
+                points[i].X = pp[i].X + dx;
+                points[i].Y = pp[i].Y + dy;
             }
+            pp.Clear();
+            pp.AddRange(points);
         }
-        public void MouseMove(Point point2) //Функция для изменения второй координаты прямоугольника (передает координаты точки при движении мыши)
+        public bool IsInArea(int dx, int dy, int w, int h) // метод для проверки попадания блока выделенных фигур в поле рисования
         {
-            this.point2 = point2;
-        }
-
-        public Figure(Point point1, Point point2,int ps, Color lc, Color pc) //Конструктор класса Figure для инициализации координат точек (спец блок инструкций, вызываемый при создании компонента)
+            // для прямоугольника, эллипса, текста, прямой линии
+            if (p1.X + dx < 0 || p1.Y + dy < 0 || p2.X + dx >= w || p2.Y + dy >= h)
+                return false;
+            // для произвольной линии
+            for(int i = 0; i < pp.Count; ++i)
             {
-                this.point1 = point1;
-                this.point2 = point2;
-            ps1 = ps; lc1 = lc; pc1 = pc;//присваиваем выбранные значения параметов рисования
+                if (pp[i].X + dx < 0 || pp[i].Y + dy < 0 || pp[i].X + dx >= w || pp[i].Y + dy >= h)
+                    return false;
+            }
+            return true;
         }
-            //Зададим абстрактные методы класса
-            public abstract void Draw(Graphics g,Point ScrollShift); // (абстрактный значит используется в производных классах)
-            public abstract void DrawDash(Graphics g, Point ScrollShift);
-            public abstract void Hide(Graphics g);
-        }
+    }
+
     [Serializable()]
-    public class Rect : Figure // Создадим производный класс для прямоугльника от класса Figure
-        {
-            public Rect(Point point1, Point point2, int ps, Color lc, Color pc) : base(point1, point2, ps,lc,pc) // Конструктор класс Rect производный от абстрактного класса Figure, base для доступа к абстрактному классу но это  не точно
-            {
-
-            }
-            
-            
-        
-        //Виртуальная функция для рисования конечного сплошного контура
-        public override void Draw(Graphics g, Point ScrollShift)
-            {
-            ScrollCalibaration(ScrollShift);
-                norm(ref point1, ref point2); //Применяем нормализацию координат
-                Pen P1 = new Pen(lc1, ps1);
-            Rectangle r = Rectangle.FromLTRB(point1.X + ScrollShift.X, point1.Y + ScrollShift.Y, point2.X + ScrollShift.X, point2.Y + ScrollShift.Y); //создаем структуру прмоугольника
-            SolidBrush SB = new SolidBrush(pc1);//для заливки
-            if (IsFilling)
-            {
-                g.FillRectangle(SB, r); //Заполняет внутреннюю часть прямоугольника, определяемого структурой Rectangle.
-            }
-                g.DrawRectangle(P1, r);// 
-                // - рисование прямоугольника по конечным координатам
-            }
-            //Виртуальная функция рисования пунктирных контуров прямоугольника
-            public override void DrawDash(Graphics g, Point ScrollShift)
-            {
-            startPoint = point1;
-            endPoint = point2;
-            //Используем другие переменные, чтобы не изменить начальные координаты
-            norm(ref startPoint, ref endPoint);
-            Pen P2 = new Pen(lc1, ps1);
-            P2.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            Rectangle r = Rectangle.FromLTRB(startPoint.X, startPoint.Y, endPoint.X, endPoint.Y);
-            g.DrawRectangle(P2, r);   // Рисуем прямоугольник чёрный пунктиром
-            }
-            //Виртуальная функция для стирания старых контуров(рисования белого прямоугольника поверх пунктира)
-            public override void Hide(Graphics g)
-            {
-            Pen P3 = new Pen(Color.White, ps1);
-            Rectangle r = Rectangle.FromLTRB(startPoint.X, startPoint.Y, endPoint.X, endPoint.Y);
-            g.DrawRectangle(P3, r);
-            }
-        }
-    //Класс эллипса
-    [Serializable]
-    public class Ellipse : Figure
+    class Rect : Figure
     {
-        public Ellipse(Point point1, Point point2, int BS, Color LC, Color BC)
-           : base(point1, point2, BS, LC, BC)
-        { }
-
-        public override void Draw(Graphics g, Point ScrollShift)
+        public Rect(Point p1, Point p2, Color cP, Color cB, int w) : base(p1, p2, cP, cB, w) { }
+        public override void Draw(Graphics g, int x, int y)
         {
-            ScrollCalibaration(ScrollShift);
-            norm(ref point1, ref point2);
-            if (IsFilling)
-            {
-                g.FillEllipse(new SolidBrush(pc1),
-                Rectangle.FromLTRB(point1.X + ScrollShift.X, point1.Y + ScrollShift.Y, point2.X + ScrollShift.X, point2.Y + ScrollShift.Y));
-            }
-            g.DrawEllipse(new Pen(lc1, ps1),
-            Rectangle.FromLTRB(point1.X + ScrollShift.X, point1.Y + ScrollShift.Y, point2.X + ScrollShift.X, point2.Y + ScrollShift.Y));
+            Pen p = new Pen(colorPen, widthPen);
+            if (selected) // если прямоугольник выделен, изменяем стиль пера на пунктирный
+                p.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            else
+                p.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            int x1, x2, y1, y2;
+            x1 = p1.X + x;
+            y1 = p1.Y + y;
+            x2 = p2.X + x;
+            y2 = p2.Y + y;
+            norm(ref x1, ref y1, ref x2, ref y2);
+            Rectangle r = Rectangle.FromLTRB(x1, y1, x2, y2);
+            SolidBrush br = new SolidBrush(colorBackground);
+            if (fillFigure) // проверка флага заливки
+                g.FillRectangle(br, r); // заливка фона прямоугольника
+            g.DrawRectangle(p, r);
         }
-
-        public override void DrawDash(Graphics g, Point ScrollShift)
+        public override void DrawDash(Graphics g, int x, int y)
         {
-            startPoint = point1;
-            endPoint = point2;
-            norm(ref startPoint, ref endPoint);
-
-            Pen P2 = new Pen(lc1, ps1)
-            {
-                DashStyle = System.Drawing.Drawing2D.DashStyle.Dash
-            };
-            g.DrawEllipse(P2, Rectangle.FromLTRB(startPoint.X, startPoint.Y, endPoint.X, endPoint.Y));
+            Pen p = new Pen(colorPen, widthPen);
+            p.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            int x1, x2, y1, y2;
+            x1 = p1.X + x;
+            y1 = p1.Y + y;
+            x2 = p2.X + x;
+            y2 = p2.Y + y;
+            norm(ref x1, ref y1, ref x2, ref y2);
+            Rectangle r = Rectangle.FromLTRB(x1, y1, x2, y2);
+            g.DrawRectangle(p, r);
         }
-
-        public override void Hide(Graphics g)
+        public override Rectangle GetRectangle()
         {
-            g.DrawEllipse(new Pen(Color.White, ps1), Rectangle.FromLTRB(startPoint.X, startPoint.Y, endPoint.X, endPoint.Y));
+            return new Rectangle(Math.Min(p1.X, p2.X), Math.Min(p1.Y, p2.Y), Math.Abs(p1.X - p2.X), Math.Abs(p1.Y - p2.Y));
         }
     }
-    //Класс для прямой линии
-    [Serializable]
-    public class StraightLine : Figure
+
+    [Serializable()]
+    class Ellipse : Figure
     {
-        public StraightLine(Point point1, Point point2, int BS, Color LC, Color BC)
-            : base(point1, point2, BS, LC, BC)
-        { }
-
-        public override void DrawDash(Graphics g, Point ScrollShift)
+        public Ellipse(Point p1, Point p2, Color cP, Color cB, int w) : base(p1, p2, cP, cB, w) { }
+        public override void Draw(Graphics g, int x, int y)
         {
-            startPoint = point1;
-            endPoint = point2;
-
-            Pen pen = new Pen(lc1, ps1)
-            {
-                DashStyle = System.Drawing.Drawing2D.DashStyle.Dash
-            };
-            g.DrawLine(pen, startPoint.X, startPoint.Y, endPoint.X, endPoint.Y);
+            Pen p = new Pen(colorPen, widthPen);
+            p.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            int x1, y1, x2, y2;
+            x1 = p1.X + x;
+            y1 = p1.Y + y;
+            x2 = p2.X + x;
+            y2 = p2.Y + y;
+            norm(ref x1, ref y1, ref x2, ref y2);
+            Rectangle r = Rectangle.FromLTRB(x1, y1, x2, y2);
+            SolidBrush br = new SolidBrush(colorBackground);
+            if (fillFigure) // проверка флага заливки
+                g.FillEllipse(br, r); // заливка фона эллипса
+            g.DrawEllipse(p, r);
         }
-        public override void Draw(Graphics g, Point ScrollShift)
+        public override void DrawDash(Graphics g, int x, int y)
         {
-            ScrollCalibaration(ScrollShift);
-            g.DrawLine(new Pen(lc1, ps1), point1.X + ScrollShift.X, point1.Y + ScrollShift.Y, point2.X + ScrollShift.X, point2.Y + ScrollShift.Y);
+            Pen p = new Pen(colorPen, widthPen);
+            p.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            int x1, y1, x2, y2;
+            x1 = p1.X + x;
+            y1 = p1.Y + y;
+            x2 = p2.X + x;
+            y2 = p2.Y + y;
+            norm(ref x1, ref y1, ref x2, ref y2);
+            Rectangle r = Rectangle.FromLTRB(x1, y1, x2, y2);
+            g.DrawEllipse(p, r);
         }
-        //Стирание предыдущих контуров
-        public override void Hide(Graphics g)
+        public override Rectangle GetRectangle()
         {
-            g.DrawLine(new Pen(Color.White, ps1), startPoint.X, startPoint.Y, endPoint.X, endPoint.Y);
+            return new Rectangle(Math.Min(p1.X, p2.X), Math.Min(p1.Y, p2.Y), Math.Abs(p1.X - p2.X), Math.Abs(p1.Y - p2.Y));
         }
     }
-    [Serializable]
-    public class CurveLine : Figure
+
+    [Serializable()]
+    class StraightLine : Figure
     {
-        List<Point> Points = new List<Point>();
-
-        public CurveLine(Point point1, Point point2, int BS, Color LC, Color BC)
-            : base(point1, point2, BS, LC, BC)
+        public StraightLine(Point p1, Point p2, Color cP, Color cB, int w) : base(p1, p2, cP, cB, w)
         {
-            Points.Add(point1);
-            Points.Add(point2);
         }
-        //Добавление новых точек для кривой
-        public void AddPoint(Point NewPoint)
+        public override void Draw(Graphics g, int x, int y)
         {
-            Points.Add(NewPoint);
+            Pen p = new Pen(colorPen, widthPen);
+            p.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            int x1, y1, x2, y2;
+            x1 = p1.X + x;
+            y1 = p1.Y + y;
+            x2 = p2.X + x;
+            y2 = p2.Y + y;
+            g.DrawLine(p, x1, y1, x2, y2);
         }
-        //Пунктир
-        public override void DrawDash(Graphics g, Point ScrollShift)
+        public override void DrawDash(Graphics g, int x, int y)
         {
-            startPoint = point1;
-            endPoint = point2;
-
-            Points.Add(endPoint);
-            g.DrawCurve(new Pen(lc1, ps1), Points.ToArray());
-
+            Pen p = new Pen(colorPen, widthPen);
+            p.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            int x1, y1, x2, y2;
+            x1 = p1.X + x;
+            y1 = p1.Y + y;
+            x2 = p2.X + x;
+            y2 = p2.Y + y;
+            g.DrawLine(p, x1, y1, x2, y2);
         }
-        //Рисование сплошной линией
-        public override void Draw(Graphics g, Point ScrollShift)
+        public override Rectangle GetRectangle()
         {
-            if (!IsScrolling)
-            {
-                for (int i = 0; i < Points.Count; i++)
-                    Points[i] = new Point(Points[i].X - ScrollShift.X, Points[i].Y - ScrollShift.Y);
-                IsScrolling = true;
-            }
-            //Новый массив для изменения координат точек
-            Point[] Points_With_Scroll = new Point[Points.Count];
-            for (int i = 0; i < Points.Count; i++)
-            {
-                Points_With_Scroll[i] = new Point(Points[i].X + ScrollShift.X, Points[i].Y + ScrollShift.Y);
-            }
-            g.DrawCurve(new Pen(lc1, ps1), Points_With_Scroll);
-        }
-        //Стирание предыдущих контуров
-        public override void Hide(Graphics g)
-        {
-
+            return new Rectangle(Math.Min(p1.X, p2.X), Math.Min(p1.Y, p2.Y), Math.Abs(p1.X - p2.X), Math.Abs(p1.Y - p2.Y));
         }
     }
+
+    [Serializable()]
+    class CurveLine : Figure
+    {
+        public CurveLine(Point p1, Point p2, Color cP, Color cB, int w) : base(p1, p2, cP, cB, w)
+        {
+            pp.Add(p1);
+            pp.Add(p2);
+        }
+        public override void Draw(Graphics g, int x, int y)
+        {
+            Pen p = new Pen(colorPen, widthPen);
+            p.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            Point[] points = new Point[pp.Count]; // создание обычного массива точек произвольной линии
+
+            for (int i = 0; i < pp.Count; ++i) // перенос информации из динамического массива в обычный 
+            {
+                points[i].X = pp[i].X + x;
+                points[i].Y = pp[i].Y + y;
+            }
+            g.DrawCurve(p, points); // рисование произвольной линии
+        }
+        public override void DrawDash(Graphics g, int x, int y)
+        {
+            Pen p = new Pen(colorPen, widthPen);
+            p.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            Point[] points = new Point[pp.Count]; // создание обычного массива точек произвольной линии
+
+            for (int i = 0; i < pp.Count; ++i) // перенос информации из динамического массива в обычный 
+            {
+                points[i].X = pp[i].X + x;
+                points[i].Y = pp[i].Y + y;
+            }
+            g.DrawCurve(p, points); // рисование произвольной линии
+        }
+        public override Rectangle GetRectangle()
+        {
+            int x_min = pp[0].X;
+            int x_max = pp[0].X;
+            int y_min = pp[0].Y;
+            int y_max = pp[0].Y;
+            for (int i = 0; i < pp.Count; ++i)
+            {
+                x_min = Math.Min(x_min, pp[i].X);
+                x_max = Math.Max(x_max, pp[i].X);
+                y_min = Math.Min(y_min, pp[i].Y);
+                y_max = Math.Max(y_max, pp[i].Y);
+            }
+            return new Rectangle(x_min, y_min, x_max - x_min, y_max - y_min);
+        }
+    }
+
+    [Serializable()]
+    class Text : Figure
+    {
+        public Font font; // Размер и тип шрифта
+        public String text; // Текст для отображения
+        public Text(Point p1, Point p2, Color cP, Color cB, int w) : base(p1, p2, cP, cB, w) { }
+        public override void Draw(Graphics g, int x, int y)
+        {
+            Pen p = new Pen(colorPen, widthPen);
+            p.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            int x1, x2, y1, y2;
+            x1 = p1.X + x;
+            y1 = p1.Y + y;
+            x2 = p2.X + x;
+            y2 = p2.Y + y;
+            norm(ref x1, ref y1, ref x2, ref y2);
+            Rectangle r = Rectangle.FromLTRB(x1, y1, x2, y2);
+            SolidBrush br = new SolidBrush(colorPen);
+            g.DrawString(text, font, br, r);
+        }
+        public override void DrawDash(Graphics g, int x, int y)
+        {
+            Pen p = new Pen(colorPen, widthPen);
+            p.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            int x1, x2, y1, y2;
+            x1 = p1.X + x;
+            y1 = p1.Y + y;
+            x2 = p2.X + x;
+            y2 = p2.Y + y;
+            norm(ref x1, ref y1, ref x2, ref y2);
+            Rectangle r = Rectangle.FromLTRB(x1, y1, x2, y2);
+            g.DrawRectangle(p, r);
+        }
+        public override Rectangle GetRectangle()
+        {
+            return new Rectangle(Math.Min(p1.X, p2.X), Math.Min(p1.Y, p2.Y), Math.Abs(p1.X - p2.X), Math.Abs(p1.Y - p2.Y));
+        }
+    }
+
+
 }

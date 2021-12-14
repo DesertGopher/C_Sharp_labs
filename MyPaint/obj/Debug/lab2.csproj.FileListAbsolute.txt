@@ -1,0 +1,297 @@
+F:\C#\lab2\lab2\bin\Debug\lab2.exe.config
+F:\C#\lab2\lab2\bin\Debug\lab2.exe
+F:\C#\lab2\lab2\bin\Debug\lab2.pdb
+F:\C#\lab2\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+F:\C#\lab2\lab2\obj\Debug\lab2.Form1.resources
+F:\C#\lab2\lab2\obj\Debug\lab2.Form2.resources
+F:\C#\lab2\lab2\obj\Debug\lab2.Properties.Resources.resources
+F:\C#\lab2\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+F:\C#\lab2\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+F:\C#\lab2\lab2\obj\Debug\lab2.exe
+F:\C#\lab2\lab2\obj\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\C#\lab2\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+C:\Users\julyg\OneDrive\Рабочий стол\C#\lab2\lab2\obj\Debug\lab2.Form1.resources
+C:\Users\julyg\OneDrive\Рабочий стол\C#\lab2\lab2\obj\Debug\lab2.Form2.resources
+C:\Users\julyg\OneDrive\Рабочий стол\C#\lab2\lab2\obj\Debug\lab2.Properties.Resources.resources
+C:\Users\julyg\OneDrive\Рабочий стол\C#\lab2\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+C:\Users\julyg\OneDrive\Рабочий стол\C#\lab2\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+C:\Users\julyg\OneDrive\Рабочий стол\C#\lab2\lab2\obj\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\C#\lab2\lab2\obj\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\C#\lab2\lab2\bin\Debug\lab2.exe.config
+C:\Users\julyg\OneDrive\Рабочий стол\C#\lab2\lab2\bin\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\C#\lab2\lab2\bin\Debug\lab2.pdb
+F:\C#\Новая папка\lab2\lab2\bin\Debug\lab2.exe.config
+F:\C#\Новая папка\lab2\lab2\bin\Debug\lab2.exe
+F:\C#\Новая папка\lab2\lab2\bin\Debug\lab2.pdb
+F:\C#\Новая папка\lab2\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+F:\C#\Новая папка\lab2\lab2\obj\Debug\lab2.Form1.resources
+F:\C#\Новая папка\lab2\lab2\obj\Debug\lab2.Form2.resources
+F:\C#\Новая папка\lab2\lab2\obj\Debug\lab2.Properties.Resources.resources
+F:\C#\Новая папка\lab2\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+F:\C#\Новая папка\lab2\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+F:\C#\Новая папка\lab2\lab2\obj\Debug\lab2.exe
+F:\C#\Новая папка\lab2\lab2\obj\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\lab2\lab2\bin\Debug\lab2.exe.config
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\lab2\lab2\bin\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\lab2\lab2\bin\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\lab2\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\lab2\lab2\obj\Debug\lab2.Form1.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\lab2\lab2\obj\Debug\lab2.Form2.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\lab2\lab2\obj\Debug\lab2.Properties.Resources.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\lab2\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\lab2\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\lab2\lab2\obj\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\lab2\lab2\obj\Debug\lab2.pdb
+F:\C#\лаба3\lab2\lab2\bin\Debug\lab2.exe.config
+F:\C#\лаба3\lab2\lab2\bin\Debug\lab2.exe
+F:\C#\лаба3\lab2\lab2\bin\Debug\lab2.pdb
+F:\C#\лаба3\lab2\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+F:\C#\лаба3\lab2\lab2\obj\Debug\lab2.Form1.resources
+F:\C#\лаба3\lab2\lab2\obj\Debug\lab2.Form2.resources
+F:\C#\лаба3\lab2\lab2\obj\Debug\lab2.Properties.Resources.resources
+F:\C#\лаба3\lab2\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+F:\C#\лаба3\lab2\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+F:\C#\лаба3\lab2\lab2\obj\Debug\lab2.exe
+F:\C#\лаба3\lab2\lab2\obj\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\лаба4\lab2\lab2\bin\Debug\lab2.exe.config
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\лаба4\lab2\lab2\bin\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\лаба4\lab2\lab2\bin\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\лаба4\lab2\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\лаба4\lab2\lab2\obj\Debug\lab2.Form1.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\лаба4\lab2\lab2\obj\Debug\lab2.Form2.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\лаба4\lab2\lab2\obj\Debug\lab2.Properties.Resources.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\лаба4\lab2\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\лаба4\lab2\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\лаба4\lab2\lab2\obj\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\Новая папка\лаба4\lab2\lab2\obj\Debug\lab2.pdb
+D:\0022-03\Корныльева\лаба4\lab2\lab2\bin\Debug\lab2.exe.config
+D:\0022-03\Корныльева\лаба4\lab2\lab2\bin\Debug\lab2.exe
+D:\0022-03\Корныльева\лаба4\lab2\lab2\bin\Debug\lab2.pdb
+D:\0022-03\Корныльева\лаба4\lab2\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+D:\0022-03\Корныльева\лаба4\lab2\lab2\obj\Debug\lab2.Form1.resources
+D:\0022-03\Корныльева\лаба4\lab2\lab2\obj\Debug\lab2.Form2.resources
+D:\0022-03\Корныльева\лаба4\lab2\lab2\obj\Debug\lab2.Properties.Resources.resources
+D:\0022-03\Корныльева\лаба4\lab2\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+D:\0022-03\Корныльева\лаба4\lab2\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+D:\0022-03\Корныльева\лаба4\lab2\lab2\obj\Debug\lab2.exe
+D:\0022-03\Корныльева\лаба4\lab2\lab2\obj\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\лаба4\lab2\lab2\bin\Debug\lab2.exe.config
+C:\Users\julyg\OneDrive\Рабочий стол\лаба4\lab2\lab2\bin\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\лаба4\lab2\lab2\bin\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\лаба4\lab2\lab2\obj\Debug\lab2.Form1.resources
+C:\Users\julyg\OneDrive\Рабочий стол\лаба4\lab2\lab2\obj\Debug\lab2.Form2.resources
+C:\Users\julyg\OneDrive\Рабочий стол\лаба4\lab2\lab2\obj\Debug\lab2.Properties.Resources.resources
+C:\Users\julyg\OneDrive\Рабочий стол\лаба4\lab2\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+C:\Users\julyg\OneDrive\Рабочий стол\лаба4\lab2\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+C:\Users\julyg\OneDrive\Рабочий стол\лаба4\lab2\lab2\obj\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\лаба4\lab2\lab2\obj\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\лаба4\lab2\lab2\obj\Debug\lab2.penWidth.resources
+C:\Users\julyg\OneDrive\Рабочий стол\лаба4\lab2\lab2\obj\Debug\lab2.PictureSize.resources
+C:\Users\julyg\OneDrive\Рабочий стол\лаба4\lab2\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+F:\C#\Лаба7\lab2\lab2\bin\Debug\lab2.exe.config
+F:\C#\Лаба7\lab2\lab2\bin\Debug\lab2.exe
+F:\C#\Лаба7\lab2\lab2\bin\Debug\lab2.pdb
+F:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+F:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.Form1.resources
+F:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.Form2.resources
+F:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.penWidth.resources
+F:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.PictureSize.resources
+F:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.Properties.Resources.resources
+F:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+F:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+F:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.exe
+F:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.pdb
+E:\C#\Лаба7\lab2\lab2\bin\Debug\lab2.exe.config
+E:\C#\Лаба7\lab2\lab2\bin\Debug\lab2.exe
+E:\C#\Лаба7\lab2\lab2\bin\Debug\lab2.pdb
+E:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+E:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.Form1.resources
+E:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.Form2.resources
+E:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.penWidth.resources
+E:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.PictureSize.resources
+E:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.Properties.Resources.resources
+E:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+E:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+E:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.exe
+E:\C#\Лаба7\lab2\lab2\obj\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\C#\лаба8\lab2\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+C:\Users\julyg\OneDrive\Рабочий стол\C#\лаба8\lab2\lab2\obj\Debug\lab2.Form1.resources
+C:\Users\julyg\OneDrive\Рабочий стол\C#\лаба8\lab2\lab2\obj\Debug\lab2.Form2.resources
+C:\Users\julyg\OneDrive\Рабочий стол\C#\лаба8\lab2\lab2\obj\Debug\lab2.penWidth.resources
+C:\Users\julyg\OneDrive\Рабочий стол\C#\лаба8\lab2\lab2\obj\Debug\lab2.PictureSize.resources
+C:\Users\julyg\OneDrive\Рабочий стол\C#\лаба8\lab2\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+C:\Users\julyg\OneDrive\Рабочий стол\C#\лаба8\lab2\lab2\obj\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\C#\лаба8\lab2\lab2\obj\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\C#\лаба8\lab2\lab2\bin\Debug\lab2.exe.config
+C:\Users\julyg\OneDrive\Рабочий стол\C#\лаба8\lab2\lab2\bin\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\C#\лаба8\lab2\lab2\bin\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\C#\лаба8\lab2\lab2\obj\Debug\lab2.Properties.Resources.resources
+C:\Users\julyg\OneDrive\Рабочий стол\C#\лаба8\lab2\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+D:\DotNet\lab2\lab2\bin\Debug\lab2.exe.config
+D:\DotNet\lab2\lab2\bin\Debug\lab2.exe
+D:\DotNet\lab2\lab2\bin\Debug\lab2.pdb
+D:\DotNet\lab2\lab2\obj\Debug\lab2.csproj.AssemblyReference.cache
+D:\DotNet\lab2\lab2\obj\Debug\lab2.Form1.resources
+D:\DotNet\lab2\lab2\obj\Debug\lab2.Form2.resources
+D:\DotNet\lab2\lab2\obj\Debug\lab2.penWidth.resources
+D:\DotNet\lab2\lab2\obj\Debug\lab2.PictureSize.resources
+D:\DotNet\lab2\lab2\obj\Debug\lab2.Properties.Resources.resources
+D:\DotNet\lab2\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+D:\DotNet\lab2\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+D:\DotNet\lab2\lab2\obj\Debug\lab2.exe
+D:\DotNet\lab2\lab2\obj\Debug\lab2.pdb
+D:\DotNet\lab_09\lab2\bin\Debug\lab2.exe.config
+D:\DotNet\lab_09\lab2\bin\Debug\lab2.exe
+D:\DotNet\lab_09\lab2\bin\Debug\lab2.pdb
+D:\DotNet\lab_09\lab2\obj\Debug\lab2.Form1.resources
+D:\DotNet\lab_09\lab2\obj\Debug\lab2.Form2.resources
+D:\DotNet\lab_09\lab2\obj\Debug\lab2.penWidth.resources
+D:\DotNet\lab_09\lab2\obj\Debug\lab2.PictureSize.resources
+D:\DotNet\lab_09\lab2\obj\Debug\lab2.Properties.Resources.resources
+D:\DotNet\lab_09\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+D:\DotNet\lab_09\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+D:\DotNet\lab_09\lab2\obj\Debug\lab2.exe
+D:\DotNet\lab_09\lab2\obj\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\lab_09 (2)\lab_09\lab2\bin\Debug\lab2.exe.config
+C:\Users\julyg\OneDrive\Рабочий стол\lab_09 (2)\lab_09\lab2\bin\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\lab_09 (2)\lab_09\lab2\bin\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\lab_09 (2)\lab_09\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+C:\Users\julyg\OneDrive\Рабочий стол\lab_09 (2)\lab_09\lab2\obj\Debug\lab2.Form1.resources
+C:\Users\julyg\OneDrive\Рабочий стол\lab_09 (2)\lab_09\lab2\obj\Debug\lab2.Form2.resources
+C:\Users\julyg\OneDrive\Рабочий стол\lab_09 (2)\lab_09\lab2\obj\Debug\lab2.penWidth.resources
+C:\Users\julyg\OneDrive\Рабочий стол\lab_09 (2)\lab_09\lab2\obj\Debug\lab2.PictureSize.resources
+C:\Users\julyg\OneDrive\Рабочий стол\lab_09 (2)\lab_09\lab2\obj\Debug\lab2.Properties.Resources.resources
+C:\Users\julyg\OneDrive\Рабочий стол\lab_09 (2)\lab_09\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+C:\Users\julyg\OneDrive\Рабочий стол\lab_09 (2)\lab_09\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+C:\Users\julyg\OneDrive\Рабочий стол\lab_09 (2)\lab_09\lab2\obj\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\lab_09 (2)\lab_09\lab2\obj\Debug\lab2.pdb
+E:\C#\лаба9\lab2\bin\Debug\lab2.exe.config
+E:\C#\лаба9\lab2\bin\Debug\lab2.exe
+E:\C#\лаба9\lab2\bin\Debug\lab2.pdb
+E:\C#\лаба9\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+E:\C#\лаба9\lab2\obj\Debug\lab2.Form1.resources
+E:\C#\лаба9\lab2\obj\Debug\lab2.Form2.resources
+E:\C#\лаба9\lab2\obj\Debug\lab2.penWidth.resources
+E:\C#\лаба9\lab2\obj\Debug\lab2.PictureSize.resources
+E:\C#\лаба9\lab2\obj\Debug\lab2.Properties.Resources.resources
+E:\C#\лаба9\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+E:\C#\лаба9\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+E:\C#\лаба9\lab2\obj\Debug\lab2.exe
+E:\C#\лаба9\lab2\obj\Debug\lab2.pdb
+F:\C#\лаба9\lab2\bin\Debug\lab2.exe.config
+F:\C#\лаба9\lab2\bin\Debug\lab2.exe
+F:\C#\лаба9\lab2\bin\Debug\lab2.pdb
+F:\C#\лаба9\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+F:\C#\лаба9\lab2\obj\Debug\lab2.Form1.resources
+F:\C#\лаба9\lab2\obj\Debug\lab2.Form2.resources
+F:\C#\лаба9\lab2\obj\Debug\lab2.penWidth.resources
+F:\C#\лаба9\lab2\obj\Debug\lab2.PictureSize.resources
+F:\C#\лаба9\lab2\obj\Debug\lab2.Properties.Resources.resources
+F:\C#\лаба9\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+F:\C#\лаба9\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+F:\C#\лаба9\lab2\obj\Debug\lab2.exe
+F:\C#\лаба9\lab2\obj\Debug\lab2.pdb
+D:\DotNet\lab_10\lab2\bin\Debug\lab2.exe.config
+D:\DotNet\lab_10\lab2\bin\Debug\lab2.exe
+D:\DotNet\lab_10\lab2\bin\Debug\lab2.pdb
+D:\DotNet\lab_10\lab2\obj\Debug\lab2.Form1.resources
+D:\DotNet\lab_10\lab2\obj\Debug\lab2.Form2.resources
+D:\DotNet\lab_10\lab2\obj\Debug\lab2.penWidth.resources
+D:\DotNet\lab_10\lab2\obj\Debug\lab2.PictureSize.resources
+D:\DotNet\lab_10\lab2\obj\Debug\lab2.Properties.Resources.resources
+D:\DotNet\lab_10\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+D:\DotNet\lab_10\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+D:\DotNet\lab_10\lab2\obj\Debug\lab2.exe
+D:\DotNet\lab_10\lab2\obj\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\Промежуточное\lab_10\lab_10\lab2\bin\Debug\lab2.exe.config
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\Промежуточное\lab_10\lab_10\lab2\bin\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\Промежуточное\lab_10\lab_10\lab2\bin\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\Промежуточное\lab_10\lab_10\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\Промежуточное\lab_10\lab_10\lab2\obj\Debug\lab2.Form1.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\Промежуточное\lab_10\lab_10\lab2\obj\Debug\lab2.Form2.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\Промежуточное\lab_10\lab_10\lab2\obj\Debug\lab2.penWidth.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\Промежуточное\lab_10\lab_10\lab2\obj\Debug\lab2.PictureSize.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\Промежуточное\lab_10\lab_10\lab2\obj\Debug\lab2.Properties.Resources.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\Промежуточное\lab_10\lab_10\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\Промежуточное\lab_10\lab_10\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\Промежуточное\lab_10\lab_10\lab2\obj\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\Промежуточное\lab_10\lab_10\lab2\obj\Debug\lab2.pdb
+D:\DotNet\lab_10\lab2\obj\Debug\lab2.csproj.AssemblyReference.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\lab_10 (3)\lab_10\lab2\bin\Debug\lab2.exe.config
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\lab_10 (3)\lab_10\lab2\bin\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\lab_10 (3)\lab_10\lab2\bin\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\lab_10 (3)\lab_10\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\lab_10 (3)\lab_10\lab2\obj\Debug\lab2.Form1.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\lab_10 (3)\lab_10\lab2\obj\Debug\lab2.Form2.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\lab_10 (3)\lab_10\lab2\obj\Debug\lab2.penWidth.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\lab_10 (3)\lab_10\lab2\obj\Debug\lab2.PictureSize.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\lab_10 (3)\lab_10\lab2\obj\Debug\lab2.Properties.Resources.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\lab_10 (3)\lab_10\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\lab_10 (3)\lab_10\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\lab_10 (3)\lab_10\lab2\obj\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\lab_10 (3)\lab_10\lab2\obj\Debug\lab2.pdb
+F:\C#\lab_10\lab2\bin\Debug\lab2.exe.config
+F:\C#\lab_10\lab2\bin\Debug\lab2.exe
+F:\C#\lab_10\lab2\bin\Debug\lab2.pdb
+F:\C#\lab_10\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+F:\C#\lab_10\lab2\obj\Debug\lab2.Form1.resources
+F:\C#\lab_10\lab2\obj\Debug\lab2.Form2.resources
+F:\C#\lab_10\lab2\obj\Debug\lab2.penWidth.resources
+F:\C#\lab_10\lab2\obj\Debug\lab2.PictureSize.resources
+F:\C#\lab_10\lab2\obj\Debug\lab2.Properties.Resources.resources
+F:\C#\lab_10\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+F:\C#\lab_10\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+F:\C#\lab_10\lab2\obj\Debug\lab2.exe
+F:\C#\lab_10\lab2\obj\Debug\lab2.pdb
+G:\C#\lab_10\lab2\bin\Debug\lab2.exe.config
+G:\C#\lab_10\lab2\bin\Debug\lab2.exe
+G:\C#\lab_10\lab2\bin\Debug\lab2.pdb
+G:\C#\lab_10\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+G:\C#\lab_10\lab2\obj\Debug\lab2.Form1.resources
+G:\C#\lab_10\lab2\obj\Debug\lab2.Form2.resources
+G:\C#\lab_10\lab2\obj\Debug\lab2.penWidth.resources
+G:\C#\lab_10\lab2\obj\Debug\lab2.PictureSize.resources
+G:\C#\lab_10\lab2\obj\Debug\lab2.Properties.Resources.resources
+G:\C#\lab_10\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+G:\C#\lab_10\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+G:\C#\lab_10\lab2\obj\Debug\lab2.exe
+G:\C#\lab_10\lab2\obj\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\lab_10new\lab_10\lab2\bin\Debug\lab2.exe.config
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\lab_10new\lab_10\lab2\bin\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\lab_10new\lab_10\lab2\bin\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\lab_10new\lab_10\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\lab_10new\lab_10\lab2\obj\Debug\lab2.Form1.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\lab_10new\lab_10\lab2\obj\Debug\lab2.Form2.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\lab_10new\lab_10\lab2\obj\Debug\lab2.penWidth.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\lab_10new\lab_10\lab2\obj\Debug\lab2.PictureSize.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\lab_10new\lab_10\lab2\obj\Debug\lab2.Properties.Resources.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\lab_10new\lab_10\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\lab_10new\lab_10\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\lab_10new\lab_10\lab2\obj\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\Универ\3.1\C#\lab_10new\lab_10\lab2\obj\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\C#\Лаба10\lab_10\lab2\bin\Debug\lab2.exe.config
+C:\Users\julyg\OneDrive\Рабочий стол\C#\Лаба10\lab_10\lab2\bin\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\C#\Лаба10\lab_10\lab2\bin\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\C#\Лаба10\lab_10\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+C:\Users\julyg\OneDrive\Рабочий стол\C#\Лаба10\lab_10\lab2\obj\Debug\lab2.Form1.resources
+C:\Users\julyg\OneDrive\Рабочий стол\C#\Лаба10\lab_10\lab2\obj\Debug\lab2.Form2.resources
+C:\Users\julyg\OneDrive\Рабочий стол\C#\Лаба10\lab_10\lab2\obj\Debug\lab2.penWidth.resources
+C:\Users\julyg\OneDrive\Рабочий стол\C#\Лаба10\lab_10\lab2\obj\Debug\lab2.PictureSize.resources
+C:\Users\julyg\OneDrive\Рабочий стол\C#\Лаба10\lab_10\lab2\obj\Debug\lab2.Properties.Resources.resources
+C:\Users\julyg\OneDrive\Рабочий стол\C#\Лаба10\lab_10\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+C:\Users\julyg\OneDrive\Рабочий стол\C#\Лаба10\lab_10\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+C:\Users\julyg\OneDrive\Рабочий стол\C#\Лаба10\lab_10\lab2\obj\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\C#\Лаба10\lab_10\lab2\obj\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\lab_10\lab2\bin\Debug\lab2.exe.config
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\lab_10\lab2\bin\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\lab_10\lab2\bin\Debug\lab2.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\lab_10\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\lab_10\lab2\obj\Debug\lab2.Form1.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\lab_10\lab2\obj\Debug\lab2.Form2.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\lab_10\lab2\obj\Debug\lab2.penWidth.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\lab_10\lab2\obj\Debug\lab2.PictureSize.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\lab_10\lab2\obj\Debug\lab2.Properties.Resources.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\lab_10\lab2\obj\Debug\lab2.csproj.GenerateResource.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\lab_10\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\lab_10\lab2\obj\Debug\lab2.exe
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\lab_10\lab2\obj\Debug\lab2.pdb
