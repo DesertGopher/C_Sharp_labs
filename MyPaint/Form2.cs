@@ -26,6 +26,7 @@ namespace MyPaint
         public bool isStart = false;
         public bool transfer = false; // флаг перемещения
         public int x_cur = 0, y_cur = 0; // переменные для хранения координат перемещения
+        Form1 parent;
 
         Point global_first_point;
 
@@ -229,7 +230,12 @@ namespace MyPaint
                         }
                         if (FigNum != 5) // условие для того, чтобы не запоминать прямоугольник выделения
                         {
-                            objects.Add(Obj);
+                        if (((Form1)MdiParent).alignToGrid)
+                        {
+                            Obj.Align(((Form1)MdiParent).gridStep, sizeForm);
+                            Obj.Align(((Form1)MdiParent).gridStep, sizeForm);
+                        }
+                        objects.Add(Obj);
                             isChange = true;
                         }
                     }
@@ -252,6 +258,12 @@ namespace MyPaint
             Rect cur = new Rect(new Point(0, 0), new Point(sizeForm.Width, sizeForm.Height ), Color.White, Color.White, 0);
             cur.fillFigure = true;
             cur.Draw(buff.Graphics, AutoScrollPosition.X, AutoScrollPosition.Y);
+
+            if (((Form1)MdiParent).gridOn)
+            {
+                drawGrid();
+            }
+
             foreach (Figure f in objects)
             {
                 if (FigNum == 5) // если выбран режим выделения
@@ -356,6 +368,11 @@ namespace MyPaint
             Rect cur = new Rect(new Point(0, 0), new Point(sizeForm.Width - 1, sizeForm.Height - 1), Color.White, Color.White, 0);
             cur.fillFigure = true;
             cur.Draw(buff.Graphics, AutoScrollPosition.X, AutoScrollPosition.Y);
+
+            if (((Form1)MdiParent).gridOn)
+            {
+                drawGrid();
+            }
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
@@ -503,6 +520,27 @@ namespace MyPaint
             }
 
             FigNum = 5;
+        }
+
+        private void drawGrid()
+        {
+            Pen p = new Pen(Color.LightSteelBlue, 1);
+            p.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+
+            for (int i = 0; i < sizeForm.Width; i += ((Form1)MdiParent).gridStep)
+                buff.Graphics.DrawLine(p, i, 0, i, sizeForm.Height);
+
+            for (int i = 0; i < sizeForm.Height; i += ((Form1)MdiParent).gridStep)
+                buff.Graphics.DrawLine(p, 0, i, sizeForm.Width, i);
+        }
+
+        public void alignObjects()
+        {
+            foreach (Figure f in objects)
+            {
+                f.Align(((Form1)MdiParent).gridStep, sizeForm);
+                f.Align(((Form1)MdiParent).gridStep, sizeForm);
+            }
         }
     }
 }

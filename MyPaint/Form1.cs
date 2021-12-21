@@ -24,7 +24,10 @@ namespace MyPaint
         public bool fillFigure = false;
         public Font font;
         private bool panelAdded = false;
+        public bool gridOn = false;
         Font CustomFont;
+        public int gridStep;
+        public bool alignToGrid = false;
 
         public Form1()
         {
@@ -35,7 +38,8 @@ namespace MyPaint
             font = new Font("Times New Roman", 12);
             MyFont();
             menuStrip1.Font = CustomFont;
-        }
+            gridStep = 10;
+    }
 
         private void окноToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -392,6 +396,57 @@ namespace MyPaint
 
             IDataObject ido = Clipboard.GetDataObject();
             вставитьToolStripMenuItem.Enabled = (ido != null && ido.GetDataPresent("Lab11"));
+        }
+
+        private void сеткаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            gridOn = !gridOn;
+            сеткаToolStripMenuItem.Checked = gridOn;
+            if (gridOn == false)
+            {
+                alignToGrid = false;
+                привязатьКСеткеToolStripMenuItem.Checked = alignToGrid;
+            }
+            foreach (Form2 f2 in MdiChildren)
+            {
+                f2.Refresh();
+            }
+        }
+
+        private void шагСеткиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GridStepDialog dialog = new GridStepDialog();
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                gridStep = dialog.gridStep;
+
+                if (gridOn)
+                {
+                    foreach (Form2 f2 in MdiChildren)
+                    {
+                        f2.Refresh();
+                    }
+                }
+            }
+            dialog.Dispose();
+        }
+
+        private void выровнятьПоСеткеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (gridOn)
+            {
+                ((Form2)ActiveMdiChild).alignObjects();
+                ((Form2)ActiveMdiChild).Refresh();
+            }
+        }
+
+        private void привязатьКСеткеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!gridOn)
+                сеткаToolStripMenuItem_Click(sender, e);
+            alignToGrid = !alignToGrid;
+            привязатьКСеткеToolStripMenuItem.Checked = alignToGrid;
         }
 
         private void MyFont()

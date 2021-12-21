@@ -79,6 +79,63 @@ namespace MyPaint
             }
             return true;
         }
+
+        public void Align(int step, Size s)
+        {
+            if (pp.Count != 0)
+            {
+                int X1 = (int)(Math.Round(pp[0].X / (float)step) * step);
+                int Y1 = (int)(Math.Round(pp[0].Y / (float)step) * step);
+                int X2 = (int)(Math.Round(pp[pp.Count - 1].X / (float)step) * step);
+                int Y2 = (int)(Math.Round(pp[pp.Count - 1].Y / (float)step) * step);
+
+                int dX = X2 - X1;
+                int dx = pp[pp.Count - 1].X - pp[0].X;
+                double kX = 1;
+                if (dX != 0)
+                    kX = dX / (float)dx;
+
+                int dY = Y2 - Y1;
+                int dy = pp[pp.Count - 1].Y - pp[0].Y;
+                double kY = 1;
+                if (dY != 0)
+                    kY = dY / (float)dy;
+
+                int x1 = pp[0].X;
+                int y1 = pp[0].Y;
+
+                Point[] points = new Point[pp.Count]; // создание обычного массива точек произвольной линии
+                for (int i = 0; i < pp.Count; ++i) // перенос информации из динамического массива в обычный 
+                {
+                    points[i].X = Math.Min(s.Width, X1 + (int)Math.Round(kX * (pp[i].X - x1)));
+                    points[i].Y = Math.Min(s.Height, Y1 + (int)Math.Round(kY * (pp[i].Y - y1)));
+                }
+                pp.Clear();
+                pp.AddRange(points);
+            }
+            else
+            {
+                int X1 = (int)(Math.Round(p1.X / (float)step) * step);
+                int Y1 = (int)(Math.Round(p1.Y / (float)step) * step);
+                int X2 = (int)(Math.Round(p2.X / (float)step) * step);
+                int Y2 = (int)(Math.Round(p2.Y / (float)step) * step);
+
+                if (X2 == X1)
+                    p2.X -= p1.X - X1;
+                else
+                    p2.X = X2;
+                p1.X = Math.Min(s.Width, X1);
+
+                if (Y2 == Y1)
+                    p2.Y -= p1.Y - Y1;
+                else
+                    p2.Y = Y2;
+                p1.Y = Math.Min(s.Height, Y1);
+
+                p2.X = Math.Min(s.Width, p2.X);
+                p2.Y = Math.Min(s.Height, p2.Y);
+            }
+        }
     }
 
     [Serializable()]
