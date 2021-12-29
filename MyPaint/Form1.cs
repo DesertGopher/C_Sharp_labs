@@ -114,13 +114,21 @@ namespace MyPaint
 
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                colorBackground = colorDialog.Color;
-                Graphics g = statusBar1.CreateGraphics();
-                SolidBrush br = new SolidBrush(colorBackground);
-                Rectangle r = new Rectangle(337, 0, statusBar1.Panels[4].Width, statusBar1.Size.Height);
-                g.FillRectangle(br, r); //рисование прямоугольника с текущим цветом фона на панели строки состояния
-                br.Dispose();
-                g.Dispose();
+                if (ActiveMdiChild != null && ((Form2)(ActiveMdiChild)).IsSelected_d())
+                {
+                    ((Form2)(ActiveMdiChild)).SetColorBackgroundActiveFigure(colorDialog.Color);
+                    ((Form2)(ActiveMdiChild)).Refresh();
+                }
+                else
+                {
+                    colorBackground = colorDialog.Color;
+                    Graphics g = statusBar1.CreateGraphics();
+                    SolidBrush br = new SolidBrush(colorBackground);
+                    Rectangle r = new Rectangle(337, 0, statusBar1.Panels[4].Width, statusBar1.Size.Height);
+                    g.FillRectangle(br, r); //рисование прямоугольника с текущим цветом фона на панели строки состояния
+                    br.Dispose();
+                    g.Dispose();
+                }
             }
             colorDialog.Dispose();
         }
@@ -131,13 +139,21 @@ namespace MyPaint
 
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                colorPen = colorDialog.Color;
-                Graphics g = statusBar1.CreateGraphics();
-                SolidBrush br = new SolidBrush(colorPen);
-                Rectangle r = new Rectangle(237, 0, statusBar1.Panels[2].Width, statusBar1.Size.Height);
-                g.FillRectangle(br, r); //рисование прямоугольника с текущим цветом линии на панели строки состояния
-                br.Dispose();
-                g.Dispose();
+                if (ActiveMdiChild != null && ((Form2)(ActiveMdiChild)).IsSelected_d())
+                {
+                    ((Form2)(ActiveMdiChild)).SetColorPenActiveFigure(colorDialog.Color);
+                    ((Form2)(ActiveMdiChild)).Refresh();
+                }
+                else
+                {
+                    colorPen = colorDialog.Color;
+                    Graphics g = statusBar1.CreateGraphics();
+                    SolidBrush br = new SolidBrush(colorPen);
+                    Rectangle r = new Rectangle(237, 0, statusBar1.Panels[2].Width, statusBar1.Size.Height);
+                    g.FillRectangle(br, r); //рисование прямоугольника с текущим цветом линии на панели строки состояния
+                    br.Dispose();
+                    g.Dispose();
+                }
             }
             colorDialog.Dispose();
         }
@@ -285,12 +301,19 @@ namespace MyPaint
 
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
-                font = fontDialog.Font;
-                if (toolStripButton14.Checked)
+                if (ActiveMdiChild != null && ((Form2)(ActiveMdiChild)).IsSelected_d())
                 {
-                    statusBar1.Panels[8].Text = font.Name + " " + font.SizeInPoints.ToString();
+                    ((Form2)(ActiveMdiChild)).SetFontActiveFigure(fontDialog.Font);
+                    ((Form2)(ActiveMdiChild)).Refresh();
                 }
-                //statusBar1.Panels[0].Text = "Толщина линии: " + widthPen.ToString(); // отображение на панели строки состояния текущей толщины линии
+                else
+                {
+                    font = fontDialog.Font;
+                    if (toolStripButton14.Checked)
+                    {
+                        statusBar1.Panels[8].Text = font.Name + " " + font.SizeInPoints.ToString();
+                    }
+                }
             }
             fontDialog.Dispose();
         }
@@ -350,8 +373,16 @@ namespace MyPaint
 
             if (dialogWidth.ShowDialog() == DialogResult.OK)
             {
-                widthPen = dialogWidth.getWidth();
-                statusBar1.Panels[0].Text = "Толщина линии: " + widthPen.ToString(); // отображение на панели строки состояния текущей толщины линии
+                if (ActiveMdiChild != null && ((Form2)(ActiveMdiChild)).IsSelected_d())
+                {
+                    ((Form2)(ActiveMdiChild)).SetSetWidthPenActiveFigure(dialogWidth.getWidth());
+                    ((Form2)(ActiveMdiChild)).Refresh();
+                }
+                else
+                {
+                    widthPen = dialogWidth.getWidth();
+                    statusBar1.Panels[0].Text = "Толщина линии: " + widthPen.ToString(); // отображение на панели строки состояния текущей толщины линии
+                }
             }
             dialogWidth.Dispose();
         }

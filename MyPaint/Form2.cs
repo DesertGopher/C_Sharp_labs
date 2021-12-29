@@ -26,9 +26,13 @@ namespace MyPaint
         public bool isStart = false;
         public bool transfer = false; // флаг перемещения
         public int x_cur = 0, y_cur = 0; // переменные для хранения координат перемещения
-        Form1 parent;
 
         Point global_first_point;
+
+        Figure sel_fig = null;
+        int marker = 0;
+
+        bool updateText = false;
 
         public Form2()
         {
@@ -69,6 +73,9 @@ namespace MyPaint
             int xx = e.X - AutoScrollPosition.X;
             int yy = e.Y - AutoScrollPosition.Y;
 
+            x_cur = xx;
+            y_cur = yy;
+
             FigNum = ((Form1)MdiParent).FigNum;
 
             if (FigNum != 5) // в случае, если не выбран режим выделения
@@ -76,8 +83,11 @@ namespace MyPaint
                 foreach (Figure f in objects)
                 {
                     f.selected = false; // устанавливаем флаг выделения фигуры в false
+                    f.selected_d = false;
                 }
                 transfer = false; // устанавливаем флаг режима перемещения в false
+                sel_fig = null;
+                marker = 0;
                 Refresh();
             }
 
@@ -104,25 +114,50 @@ namespace MyPaint
                     ((Text)Obj).font = ((Form1)MdiParent).font;
                     break;
                 case 5: // в случае, если выбран режим выделения
-                    Obj = new Rect(new Point(xx, yy), new Point(xx, yy), Color.Black, Color.White, 1); // создание объекта прямоугольника выделения
-                    bool crossed = false; // флаг нажатия левой кнопкой мыши в области прямоугольника, в который вписана фигура
-                    foreach (Figure f in objects)
+                    Obj = new Rect(new Point(xx, yy), new Point(xx, yy), ((Form1)MdiParent).colorPen, ((Form1)MdiParent).colorBackground, ((Form1)MdiParent).widthPen);
+                    if (sel_fig != null)
                     {
-                        if (f.GetRectangle().IntersectsWith(Obj.GetRectangle())) // в случае, если прямоугольник выделения пересекается с прямоугольником, в который вписана фигура
+                        marker = sel_fig.GetMarker(xx, yy);
+                        if (marker != 0)
                         {
-                            if (f.selected) // если фигура выделена
-                                transfer = true; // устанавливаем флаг режима перемещения в true
-                            f.selected = true;
-                            crossed = true;
+                            transfer = false;
+                            return;
+                        }
+                        updateText = sel_fig.IsText();
+                        if (sel_fig.GetRectangle().IntersectsWith(Obj.GetRectangle()))
+                        {
+                            transfer = true;
+                        }
+                        else
+                        {
+                            marker = 0;
+                            sel_fig.selected = false;
+                            sel_fig.selected_d = false;
+                            sel_fig = null;
                         }
                     }
-                    if (!crossed) // если левая кнопка мыши нажата не в области прямоугольника, в который вписана фигура, то флаг перемещения и выделения всех фигур снимается
+                    else
                     {
+
+                        bool crossed = false;
                         foreach (Figure f in objects)
                         {
-                            f.selected = false;
+                            if (f.GetRectangle().IntersectsWith(Obj.GetRectangle()))
+                            {
+                                if (f.selected)
+                                    transfer = true;
+                                f.selected = true;
+                                crossed = true;
+                            }
                         }
-                        transfer = false;
+                        if (!crossed)
+                        {
+                            foreach (Figure f in objects)
+                            {
+                                f.selected = false;
+                            }
+                            transfer = false;
+                        }
                     }
                     break;
             }
@@ -130,10 +165,15 @@ namespace MyPaint
 
         private void Form2_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.X - AutoScrollPosition.X < 0 || e.Y - AutoScrollPosition.Y < 0 || e.X - AutoScrollPosition.X >= sizeForm.Width || e.Y - AutoScrollPosition.Y >= sizeForm.Height)
+            updateText = false;
+
+            int xxx = e.X - AutoScrollPosition.X;
+            int yyy = e.Y - AutoScrollPosition.Y;
+
+            if (xxx < 0 || yyy < 0 || xxx >= sizeForm.Width || yyy >= sizeForm.Height)
                     return;
 
-            ((Form1)MdiParent).SetCursor(e.X - AutoScrollPosition.X, e.Y - AutoScrollPosition.Y); // передача текущих координат курсора мыши
+            ((Form1)MdiParent).SetCursor(xxx, yyy); // передача текущих координат курсора мыши
 
             if (!isStart) return;
 
@@ -141,11 +181,11 @@ namespace MyPaint
             {
                 if (FigNum == 3)
                 {
-                    Obj.pp.Add(new Point(e.X - AutoScrollPosition.X, e.Y - AutoScrollPosition.Y));
+                    Obj.pp.Add(new Point(xxx, yyy));
                 }
                 if (FigNum == 5) // если выбран режим выделения
                 {
-                    if (transfer) // если включен режим перемещения
+                    if (transfer || marker != 0) // если включен режим перемещения
                     {
                         x_cur = e.X - AutoScrollPosition.X; // изменение координат перемещения
                         y_cur = e.Y - AutoScrollPosition.Y;
@@ -155,6 +195,7 @@ namespace MyPaint
                         foreach (Figure f in objects)
                         {
                             f.selected = f.GetRectangle().IntersectsWith(Obj.GetRectangle()); // изменение флага выделения у фигуры
+                            f.selected_d = false;
                         }
                     }
                     Refresh();
@@ -164,7 +205,14 @@ namespace MyPaint
                 if (!(FigNum == 5 && transfer)) // в случае, если не включен режим выделения и перемещения
                 {
                     Graphics g = CreateGraphics();
-                    Obj.MouseMove(g, new Point(e.X - AutoScrollPosition.X, e.Y - AutoScrollPosition.Y), AutoScrollPosition.X, AutoScrollPosition.Y);
+                    if (sel_fig != null && marker != 0)
+                    {
+                        Obj.p2 = new Point(xxx, yyy);
+                    }
+                    else
+                    {
+                        Obj.MouseMove(g, new Point(xxx, yyy), AutoScrollPosition.X, AutoScrollPosition.Y);
+                    }
                     g.Dispose();
                 }
             }
@@ -172,34 +220,76 @@ namespace MyPaint
 
         private void Form2_MouseUp(object sender, MouseEventArgs e)
         {
-            if (isStart && e.Button == MouseButtons.Left)
             {
-                isStart = false;
-                int xx = e.X - AutoScrollPosition.X;
-                int yy = e.Y - AutoScrollPosition.Y;
-                    if (transfer && FigNum == 5) // в случае, если включен режим выделения и перемещения
+                if (isStart && e.Button == MouseButtons.Left)
+                {
+                    isStart = false;
+                    int xx = e.X - AutoScrollPosition.X;
+                    int yy = e.Y - AutoScrollPosition.Y;
+
+                    if (sel_fig != null)
                     {
-                        bool is_in_area = true; // флаг попадания в область рисования
+                        if (marker != 0)
+                        {
+                            sel_fig.FixZoom(marker, sel_fig.GetRectangle(), this.Obj.p2.X - this.Obj.p1.X, this.Obj.p2.Y - this.Obj.p1.Y);
+                            marker = 0;
+                            if (((Form1)MdiParent).alignToGrid)
+                            {
+                                sel_fig.Align(((Form1)MdiParent).gridStep, sizeForm);
+                                sel_fig.Align(((Form1)MdiParent).gridStep, sizeForm);
+                            }
+                        }
+                        else
+                        {
+                            if (updateText)
+                            {
+                                Form form = new Form();
+                                form.FormBorderStyle = FormBorderStyle.None;
+                                form.StartPosition = FormStartPosition.Manual;
+                                Rectangle rrr = sel_fig.GetRectangle();
+                                Point ppp = PointToScreen(new Point(rrr.X, rrr.Y));
+                                form.SetDesktopLocation(ppp.X, ppp.Y);
+                                form.BackColor = Color.Magenta;
+                                form.TransparencyKey = Color.Magenta;
+                                TextBox tmpTextBox = new TextBox();
+                                tmpTextBox.Font = ((Text)sel_fig).font;
+                                tmpTextBox.ForeColor = sel_fig.GetColorPen();
+                                tmpTextBox.Multiline = true;
+                                tmpTextBox.Height = sel_fig.GetRectangle().Height;
+                                tmpTextBox.Width = sel_fig.GetRectangle().Width;
+                                tmpTextBox.Parent = form;
+                                tmpTextBox.KeyPress += UpdateTextBox_KeyPress;
+                                tmpTextBox.Text = ((Text)sel_fig).text;
+                                form.Size = new Size(tmpTextBox.Size.Width, tmpTextBox.Size.Height);
+                                tmpTextBox.Visible = true;
+                                form.ShowDialog();
+                            }
+                        }
+                    }
+
+                    if (transfer && FigNum == 5)
+                    {
+                        bool is_in_area = true;
                         foreach (Figure f in objects)
                         {
                             if (f.selected && !f.IsInArea(x_cur - this.Obj.p1.X, y_cur - this.Obj.p1.Y,
-                                sizeForm.Width, sizeForm.Height)) // если фигура выделена и она выходит за пределы области рисования
+                                sizeForm.Width, sizeForm.Height))
                             {
-                                is_in_area = false; // установка флага попадания в область рисования в false
+                                is_in_area = false;
                                 break;
                             }
                         }
-                        if (is_in_area) // если все выделенные фигуры оказались в области рисованм
+                        if (is_in_area)
                         {
                             foreach (Figure f in objects)
                             {
                                 if (f.selected)
                                 {
-                                    f.MoveTo(x_cur - this.Obj.p1.X, y_cur - this.Obj.p1.Y); // вызов метода для окончательного перемещения выделенных фигур 
-                            }
+                                    f.MoveTo(x_cur - this.Obj.p1.X, y_cur - this.Obj.p1.Y);
+                                }
                             }
                         }
-                        transfer = false; // снятие флага перемещения
+                        transfer = false;
                     }
                     else if (xx >= 0 && yy >= 0 && xx < sizeForm.Width && yy < sizeForm.Height)
                     {
@@ -228,22 +318,28 @@ namespace MyPaint
                             tmpTextBox.Visible = true;
                             form.ShowDialog();
                         }
-                        if (FigNum != 5) // условие для того, чтобы не запоминать прямоугольник выделения
+                        if (FigNum != 5)
                         {
-                        if (((Form1)MdiParent).alignToGrid)
-                        {
-                            Obj.Align(((Form1)MdiParent).gridStep, sizeForm);
-                            Obj.Align(((Form1)MdiParent).gridStep, sizeForm);
-                        }
-                        objects.Add(Obj);
+                            if (((Form1)MdiParent).alignToGrid)
+                            {
+                                Obj.Align(((Form1)MdiParent).gridStep, sizeForm);
+                                Obj.Align(((Form1)MdiParent).gridStep, sizeForm);
+                            }
+                            if (FigNum == 2)
+                            {
+                                Obj = new CurveLine(Obj.p1, Obj.p2, Obj.GetColorPen(), Obj.GetColorBackground(), Obj.GetWidthPen());
+                            }
+                            objects.Add(Obj);
+                            Obj.Save();
                             isChange = true;
                         }
                     }
-                Invalidate();
+                    Invalidate();
+                }
             }
         }
 
-        private void TmpTextBox_KeyPress(object sender, KeyPressEventArgs e)
+            private void TmpTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
@@ -279,11 +375,18 @@ namespace MyPaint
                         }
                         else
                         {
-                            Rectangle rr = f.GetRectangle(); // получение прямоугольника, в который вписана фигура
-                            rr.X += AutoScrollPosition.X; // учёт скроллинга
-                            rr.Y += AutoScrollPosition.Y;
-                            f.Draw(buff.Graphics, AutoScrollPosition.X, AutoScrollPosition.Y); // рисование самой фигуры
-                            buff.Graphics.DrawRectangle(p, rr); // рисование контура выделения
+                            if (f.selected_d && marker != 0)
+                            {
+                                f.Zoom(buff.Graphics, AutoScrollPosition.X, AutoScrollPosition.Y, marker, this.Obj);
+                            }
+                            else
+                            {
+                                Rectangle rr = f.GetRectangle();
+                                rr.X += AutoScrollPosition.X;
+                                rr.Y += AutoScrollPosition.Y;
+                                f.Draw(buff.Graphics, AutoScrollPosition.X, AutoScrollPosition.Y);
+                                f.PaintRectangle(buff.Graphics, new Pen(Color.Black, 1));
+                            }
                         }
                     }
                     else
@@ -540,6 +643,62 @@ namespace MyPaint
             {
                 f.Align(((Form1)MdiParent).gridStep, sizeForm);
                 f.Align(((Form1)MdiParent).gridStep, sizeForm);
+            }
+        }
+
+        public void SetColorPenActiveFigure(Color col)
+        {
+            sel_fig.SetColorPen(col);
+        }
+
+        public void SetColorBackgroundActiveFigure(Color col)
+        {
+            sel_fig.SetColorBackground(col);
+        }
+
+        public void SetSetWidthPenActiveFigure(int w)
+        {
+            sel_fig.SetWidthPen(w);
+        }
+
+        public void SetFontActiveFigure(Font f)
+        {
+            sel_fig.SetFont(f);
+        }
+        public bool IsSelected_d()
+        {
+            return sel_fig != null;
+        }
+
+        private void Form2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (FigNum != 5) return;
+
+            sel_fig = null;
+
+            foreach (Figure f in objects)
+            {
+                f.selected = false;
+                f.selected_d = false;
+                if (f.GetRectangle().IntersectsWith(Obj.GetRectangle()))
+                {
+                    sel_fig = f;
+                }
+            }
+            if (sel_fig != null)
+            {
+                sel_fig.selected = true;
+                sel_fig.selected_d = true;
+            }
+            Refresh();
+        }
+
+        private void UpdateTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                ((Text)sel_fig).text = ((TextBox)sender).Text;
+                ((Form)((TextBox)sender).Parent).Close();
             }
         }
     }

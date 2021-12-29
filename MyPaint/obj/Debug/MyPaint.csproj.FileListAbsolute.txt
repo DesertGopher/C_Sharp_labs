@@ -91,3 +91,31 @@ F:\Education\University\3 course\Программирование в графи�
 F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_12\MyPaint\bin\Debug\MyPaint.exe.config
 F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_12\MyPaint\bin\Debug\MyPaint.exe
 F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_12\MyPaint\bin\Debug\MyPaint.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\MyPaint_13\MyPaint_12\MyPaint\bin\Debug\MyPaint.exe.config
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\MyPaint_13\MyPaint_12\MyPaint\bin\Debug\MyPaint.exe
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\MyPaint_13\MyPaint_12\MyPaint\bin\Debug\MyPaint.pdb
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\MyPaint_13\MyPaint_12\MyPaint\obj\Debug\MyPaint.csprojAssemblyReference.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\MyPaint_13\MyPaint_12\MyPaint\obj\Debug\MyPaint.Form1.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\MyPaint_13\MyPaint_12\MyPaint\obj\Debug\MyPaint.Form2.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\MyPaint_13\MyPaint_12\MyPaint\obj\Debug\MyPaint.GridStepDialog.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\MyPaint_13\MyPaint_12\MyPaint\obj\Debug\MyPaint.PenSz.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\MyPaint_13\MyPaint_12\MyPaint\obj\Debug\MyPaint.FormSize.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\MyPaint_13\MyPaint_12\MyPaint\obj\Debug\MyPaint.Properties.Resources.resources
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\MyPaint_13\MyPaint_12\MyPaint\obj\Debug\MyPaint.csproj.GenerateResource.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\MyPaint_13\MyPaint_12\MyPaint\obj\Debug\MyPaint.csproj.CoreCompileInputs.cache
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\MyPaint_13\MyPaint_12\MyPaint\obj\Debug\MyPaint.exe
+C:\Users\julyg\OneDrive\Рабочий стол\Игорь\MyPaint_13\MyPaint_12\MyPaint\obj\Debug\MyPaint.pdb
+F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_13\MyPaint_13\MyPaint\bin\Debug\MyPaint.exe.config
+F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_13\MyPaint_13\MyPaint\bin\Debug\MyPaint.exe
+F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_13\MyPaint_13\MyPaint\bin\Debug\MyPaint.pdb
+F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_13\MyPaint_13\MyPaint\obj\Debug\MyPaint.csprojAssemblyReference.cache
+F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_13\MyPaint_13\MyPaint\obj\Debug\MyPaint.Form1.resources
+F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_13\MyPaint_13\MyPaint\obj\Debug\MyPaint.Form2.resources
+F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_13\MyPaint_13\MyPaint\obj\Debug\MyPaint.GridStepDialog.resources
+F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_13\MyPaint_13\MyPaint\obj\Debug\MyPaint.PenSz.resources
+F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_13\MyPaint_13\MyPaint\obj\Debug\MyPaint.FormSize.resources
+F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_13\MyPaint_13\MyPaint\obj\Debug\MyPaint.Properties.Resources.resources
+F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_13\MyPaint_13\MyPaint\obj\Debug\MyPaint.csproj.GenerateResource.cache
+F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_13\MyPaint_13\MyPaint\obj\Debug\MyPaint.csproj.CoreCompileInputs.cache
+F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_13\MyPaint_13\MyPaint\obj\Debug\MyPaint.exe
+F:\Education\University\3 course\Программирование в графических средах\Лабораторные\MyPaint_13\MyPaint_13\MyPaint\obj\Debug\MyPaint.pdb

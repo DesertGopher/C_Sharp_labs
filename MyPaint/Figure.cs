@@ -16,6 +16,12 @@ namespace MyPaint
         public List<Point> pp; 
         public bool fillFigure;
         [NonSerialized()] public bool selected; // флаг выделения
+        Point[] points;
+        int sW, sH;
+        [NonSerialized()] public bool selected_d = false;
+        [NonSerialized()] int size_marker = 15;
+        [NonSerialized()] int[] dx = new int[8] { 0, 2, 2, 0, 1, 2, 1, 0 };
+        [NonSerialized()] int[] dy = new int[8] { 0, 0, 2, 2, 0, 1, 2, 1 };
         public Figure(Point p1, Point p2, Color cP, Color cB, int w)
         {
             this.p1 = p1;
@@ -134,6 +140,209 @@ namespace MyPaint
 
                 p2.X = Math.Min(s.Width, p2.X);
                 p2.Y = Math.Min(s.Height, p2.Y);
+            }
+        }
+
+        virtual public bool IsText()
+        {
+            return false;
+        }
+
+        public void SetColorPen(Color col)
+        {
+            colorPen = col;
+        }
+
+        public Color GetColorPen()
+        {
+            return colorPen;
+        }
+
+        public int GetWidthPen()
+        {
+            return widthPen;
+        }
+
+        public Color GetColorBackground()
+        {
+            return colorBackground;
+        }
+
+        public void SetColorBackground(Color col)
+        {
+            colorBackground = col;
+            fillFigure = true;
+        }
+
+        public void SetWidthPen(int w)
+        {
+            widthPen = w;
+        }
+
+        public virtual void SetFont(Font f)
+        {
+        }
+
+        public void Save()
+        {
+            Rectangle rr = GetRectangle();
+            points = new Point[pp.Count];
+            for (int i = 0; i < pp.Count; ++i)
+            {
+                points[i] = new Point(pp[i].X - rr.X, pp[i].Y - rr.Y);
+            }
+            sW = rr.Width;
+            sH = rr.Height;
+        }
+
+        public void FixZoom(int marker, Rectangle rr, int dX, int dY)
+        {
+            switch (marker)
+            {
+                case 1:
+                    p1 = new Point(rr.X + dX, rr.Y + dY);
+                    p2 = new Point(rr.X + rr.Width, rr.Y + rr.Height);
+                    break;
+                case 2:
+                    p1 = new Point(rr.X, rr.Y + dY);
+                    p2 = new Point(rr.X + rr.Width + dX, rr.Y + rr.Height);
+                    break;
+                case 3:
+                    p1 = new Point(rr.X, rr.Y);
+                    p2 = new Point(rr.X + rr.Width + dX, rr.Y + rr.Height + dY);
+                    break;
+                case 4:
+                    p1 = new Point(rr.X + dX, rr.Y);
+                    p2 = new Point(rr.X + rr.Width, rr.Y + rr.Height + dY);
+                    break;
+                case 5:
+                    p1 = new Point(rr.X, rr.Y + dY);
+                    break;
+                case 6:
+                    p2 = new Point(rr.X + rr.Width + dX, rr.Y + rr.Height);
+                    break;
+                case 7:
+                    p2 = new Point(rr.X + rr.Width, rr.Y + rr.Height + dY);
+                    break;
+                case 8:
+                    p1 = new Point(rr.X + dX, rr.Y);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void Zoom(Graphics g, int x, int y, int marker, Figure cur)
+        {
+            Rectangle rr = GetRectangle();
+
+            if (pp.Count != 0)
+            {
+                int X1 = rr.X;
+                int Y1 = rr.Y;
+                int X2 = rr.X + rr.Width;
+                int Y2 = rr.Y + rr.Height;
+
+                switch (marker)
+                {
+                    case 1:
+                        X1 += cur.p2.X - X1;
+                        Y1 += cur.p2.Y - Y1;
+                        break;
+                    case 2:
+                        Y1 += cur.p2.Y - Y1;
+                        X2 += cur.p2.X - X2;
+                        break;
+                    case 3:
+                        X2 += cur.p2.X - X2;
+                        Y2 += cur.p2.Y - Y2;
+                        break;
+                    case 4:
+                        X1 += cur.p2.X - X1;
+                        Y2 += cur.p2.Y - Y2;
+                        break;
+                    case 5:
+                        Y1 += cur.p2.Y - Y1;
+                        break;
+                    case 6:
+                        X2 += cur.p2.X - X2;
+                        break;
+                    case 7:
+                        Y2 += cur.p2.Y - Y2;
+                        break;
+                    case 8:
+                        X1 += cur.p2.X - X1;
+                        break;
+                }
+
+                double kX = 1;
+                if (sW != 0)
+                    kX = (X2 - X1) / (double)sW;
+
+                double kY = 1;
+                if (sH != 0)
+                    kY = (Y2 - Y1) / (double)sH;
+
+                pp.Clear();
+                for (int i = 0; i < points.Length; ++i)
+                {
+                    pp.Add(new Point(X1 + (int)Math.Round(kX * points[i].X), Y1 + (int)Math.Round(kY * points[i].Y)));
+                }
+                Draw(g, x, y);
+                PaintRectangle(g, new Pen(Color.Black, 1));
+            }
+            else
+            {
+                int dX = cur.p2.X - cur.p1.X;
+                int dY = cur.p2.Y - cur.p1.Y;
+
+                Point tp1 = p1;
+                Point tp2 = p2;
+
+                FixZoom(marker, rr, dX, dY);
+                Draw(g, x, y);
+                PaintRectangle(g, new Pen(Color.Black, 1));
+
+                p1 = tp1;
+                p2 = tp2;
+            }
+        }
+
+        public int GetMarker(int x, int y)
+        {
+            Rectangle r = GetRectangle();
+            Rectangle rr = new Rectangle(x, y, 0, 0);
+
+            for (int i = 0; i < 8; ++i)
+                if (rr.IntersectsWith(
+                    new Rectangle(
+                        r.X - size_marker / 2 + dx[i] * r.Width / 2,
+                        r.Y - size_marker / 2 + dy[i] * r.Height / 2,
+                        size_marker, size_marker)))
+                    return i + 1;
+            return 0;
+        }
+
+        public void PaintRectangle(Graphics g, Pen p)
+        {
+            if (selected)
+            {
+                p.Color = Color.Black;
+                p.Width = 1;
+                p.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                g.DrawRectangle(p, GetRectangle());
+            }
+            if (selected_d)
+            {
+                p.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+                Rectangle r = GetRectangle();
+
+                for (int i = 0; i < 8; ++i)
+                    g.DrawRectangle(p, 
+                        new Rectangle(
+                            r.X - size_marker / 2 + dx[i] * r.Width / 2,
+                            r.Y - size_marker / 2 + dy[i] * r.Height / 2,
+                            size_marker, size_marker));
             }
         }
     }
@@ -341,7 +550,16 @@ namespace MyPaint
         {
             return new Rectangle(Math.Min(p1.X, p2.X), Math.Min(p1.Y, p2.Y), Math.Abs(p1.X - p2.X), Math.Abs(p1.Y - p2.Y));
         }
+  
+        public override bool IsText()
+        {
+            return true;
+        }
+
+        public override void SetFont(Font f)
+        {
+            font = f;
+        }
+
     }
-
-
 }
